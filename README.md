@@ -1,4 +1,4 @@
-# donationupp
+# donatesupp
 
 ## Project setup
 ```
