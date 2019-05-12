@@ -13,8 +13,7 @@
        </div>
      </div>
 
-
-     <b-collapse id="widget-construction">
+     <b-collapse id="widget-construction" >
       <div class="widget-construction">
 
         <div class="widget-type" :class="color_schema.item">
@@ -24,51 +23,51 @@
                 Тип виджета
               </label>
               <div class="select-block">
-                <b-dropdown toggle-class="drop-select-block" id="widget-type" v-model="widget_type.value" :text="widget_type.value" dropbottom class="btn my-btn">
+                <b-dropdown toggle-class="drop-select-block" id="widget-type" v-model="item_form.widget_type.value" :text="item_form.widget_type.value" dropbottom class="btn my-btn">
                   <b-dropdown-item v-for="option in widget_type_options"
                   :value="option.value"
                   :key="option.value"
-                  :class="{ active: widget_type.value == option.value }"
-                  @click="widget_type.value = option.value; widget_type.message = option.message;"
+                  :class="{ active: item_form.widget_type.value == option.value }"
+                  @click="item_form.widget_type.value = option.value; item_form.widget_type.message = option.message;"
                   >
                   {{ option.value }}
                 </b-dropdown-item>
               </b-dropdown>
             </div>
           </div>
-          <div class="form-group" v-show="widget_type.value.match(/Последний подписчик|Самый крупный донатер|Последний донатер/)">
+          <div class="form-group" v-show="item_form.widget_type.value.match(/Последний подписчик|Самый крупный донатер|Последний донатер/)">
             <label :class="color_schema.text">
              Количество
            </label>
-           <input type="number" min="1" name="widget-list-count" v-model="widget_list_count" class="widget-input">
+           <input type="number" min="1" name="widget-list-count" v-model="item_form.widget_list_count" class="widget-input">
          </div>
-         <div class="form-group" v-show="widget_type.value.match(/Последний подписчик|Количество подписчиков|Количество подписчиков за период/)">
+         <div class="form-group" v-show="item_form.widget_type.value.match(/Последний подписчик|Количество подписчиков|Количество подписчиков за период/)">
           <label for="widget-subscribe" :class="color_schema.text">
             Подписка
           </label>
-          <select-block id="widget-subscribe" :value="widget_subscribe" :options="widget_subscribe_options" />
+          <select-block id="widget-subscribe" :value="item_form.widget_subscribe" :options="widget_subscribe_options" />
         </div>
-        <div class="form-group" v-show="widget_type.value.match(/Сбор средств/)">
+        <div class="form-group" v-show="item_form.widget_type.value.match(/Сбор средств/)">
           <label for="widget-amount" :class="color_schema.text">
            Цель собрать
          </label>
-         <input type="number" min="1" name="widget-font-size" v-model="widget_max_amount" class="widget-input">
+         <input type="number" min="1" name="widget-font-size" v-model="item_form.widget_max_amount" class="widget-input">
          <span>EUR</span>
        </div>
-       <div class="form-group" v-show="widget_type.value.match(/Сбор средств/)">
+       <div class="form-group" v-show="item_form.widget_type.value.match(/Сбор средств/)">
         <label for="widget-widget-ingathering" :class="color_schema.text">
          Начать сбор с
        </label>
-       <input type="number" min="1" name="widget-font-size" v-model="widget_amount" class="widget-input">
+       <input type="number" min="1" name="widget-font-size" v-model="item_form.widget_amount" class="widget-input">
        <span>EUR</span>
      </div>
-     <div class="form-group" v-show="widget_type.value.match(/Сбор средств/)">
+     <div class="form-group" v-show="item_form.widget_type.value.match(/Сбор средств/)">
       <label for="widget-message" :class="color_schema.text">
         Название сбора
       </label>
-      <input type="text" name="widget-message" v-model="widget_type.message" class="widget-input">
+      <input type="text" name="widget-message" v-model="item_form.widget_type.message" class="widget-input">
     </div>
-    <div class="form-group" v-show="widget_type.value.match(/Сбор средств/)">
+    <div class="form-group" v-show="item_form.widget_type.value.match(/Сбор средств/)">
       <label for="widget-date" :class="color_schema.text">
         Завершить сбор
       </label>
@@ -77,12 +76,12 @@
   </div>
 </div>
 <div class="widget-form" :class="color_schema.item">
-  <form v-show="widget_type.value != 'Сбор средств'">
+  <form v-show="item_form.widget_type.value != 'Сбор средств'">
     <div class="form-group">
       <label for="widget-message" :class="color_schema.text">
         Сообщение
       </label>
-      <input type="text" name="widget-message" v-model="widget_type.message" class="widget-input">
+      <input type="text" name="widget-message" v-model="item_form.widget_type.message" class="widget-input">
     </div>
     <div class="custom-form-group">
       <div class="form-group">
@@ -90,12 +89,12 @@
           Тип отображения
         </label>
         <div class="select-block">
-          <b-dropdown toggle-class="drop-select-block" id="widget-animation" v-model="widget_animation.value" :text="widget_animation.value" dropbottom class="btn my-btn">
+          <b-dropdown toggle-class="drop-select-block" id="widget-animation" v-model="item_form.widget_animation.value" :text="item_form.widget_animation.value" dropbottom class="btn my-btn">
             <b-dropdown-item v-for="option in widget_animation_options"
             :value="option.value"
             :key="option.value"
-            :class="{ active: widget_animation.value == option.value }"
-            @click="widget_animation.value = option.value; widget_animation.class_name = option.class_name;"
+            :class="{ active: item_form.widget_animation.value == option.value }"
+            @click="item_form.widget_animation.value = option.value; item_form.widget_animation.class_name = option.class_name;"
             >
             {{ option.value }}
           </b-dropdown-item>
@@ -106,54 +105,54 @@
       <label for="widget-color" :class="color_schema.text">
        Цвет
      </label>
-     <color-picker :color="widget_color" v-model="widget_color" />
+     <color-picker :color="item_form.widget_color" v-model="item_form.widget_color" />
    </div>
    <div class="form-group">
     <label for="widget-font-size" :class="color_schema.text">
      Размер текста
    </label>
-   <input type="number" min="1" name="widget-font-size" v-model="widget_font_size" class="widget-input">
+   <input type="number" min="1" name="widget-font-size" v-model="item_form.widget_font_size" class="widget-input">
  </div>
- <div class="form-group" v-show="widget_animation.value.match(/Слайдер/)">
+ <div class="form-group" v-show="item_form.widget_animation.value.match(/Слайдер/)">
   <label for="widget-animation-speed" :class="color_schema.text">
    Задержка между слайдами (микросекунды)
  </label>
- <input type="number" min="1" name="widget-animation-speed" v-model="widget_animation_delay" class="widget-input">
+ <input type="number" min="1" name="widget-animation-speed" v-model="item_form.widget_animation_delay" class="widget-input">
 </div>
-<div class="form-group" v-show="widget_animation.value.match(/Бегущая строка/)">
+<div class="form-group" v-show="item_form.widget_animation.value.match(/Бегущая строка/)">
   <label for="widget-animation-speed" :class="color_schema.text">
    Скорость прокрутки
  </label>
  <div class="amount-slider">
-  <b-form-slider ref="range" :min="0" :max="4000" v-model="widget_animation_delay" />
-  <div class="slider-value text">{{ widget_animation_delay }}</div>
+  <b-form-slider ref="range" :min="0" :max="4000" v-model="item_form.widget_animation_delay" />
+  <div class="slider-value text">{{ item_form.widget_animation_delay }}</div>
 </div>
 </div>
 </div>
 </form>
-<form v-show="widget_type.value == 'Сбор средств'"> 
+<form v-show="item_form.widget_type.value == 'Сбор средств'">
   <div class="preview-ingathering" :class="[color_schema.global, color_schema.text]">
     <div class="preview-block">
-      <div class="text" :style="{color: sbor_text_outside}">{{widget_type.message}}</div>
-      <div class="ingathering" 
-      :style="{ 
-        width: sbor_width + 'px', 
-        height: sbor_height + 'px' , 
-        background: sbor_bar_color,
+      <div class="text" :style="{color: item_form.sbor_text_outside}">{{item_form.widget_type.message}}</div>
+      <div class="ingathering"
+      :style="{
+        width: item_form.sbor_width + 'px',
+        height: item_form.sbor_height + 'px' ,
+        background: item_form.sbor_bar_color,
         position: 'relative',
-        color: sbor_text_inside,
-        border: sbor_border ? '2px solid' + sbor_bar_border_color : 'none'
+        color: item_form.sbor_text_inside,
+        border: item_form.sbor_border ? '2px solid' + item_form.sbor_bar_border_color : 'none'
       }">
-      <div class="fill-block" :style="{ height: '100%', width: sbor_percent + '%', background: sbor_bar_fill_color }">
+      <div class="fill-block" :style="{ height: '100%', width: item_form.sbor_percent + '%', background: item_form.sbor_bar_fill_color }">
 
       </div>
       <div class="ingathering-text">
-        {{widget_amount}} EUR ({{ sbor_percent }}%)
+        {{item_form.widget_amount}} EUR ({{ item_form.sbor_percent }}%)
       </div>
       <!-- <b-progress :value="widget_amount" :max="widget_max_amount" show-value></b-progress> -->
     </div>
-    <div class="max-amount" :style="{color: sbor_text_outside}">
-      {{widget_max_amount}} EUR
+    <div class="max-amount" :style="{color: item_form.sbor_text_outside}">
+      {{item_form.widget_max_amount}} EUR
     </div>
   </div>
 
@@ -182,48 +181,47 @@
   <label for="widget-font-size" :class="color_schema.text">
    Толщина градусника
  </label>
- <input type="number" min="1" name="widget-font-size" v-model="sbor_height" class="widget-input">
+ <input type="number" min="1" name="widget-font-size" v-model="item_form.sbor_height" class="widget-input">
 </div>
 <div class="form-group">
   <label for="widget-font-size" :class="color_schema.text">
    Ширина градусника
  </label>
- <input type="number" min="1" name="widget-font-size" v-model="sbor_width" class="widget-input">
+ <input type="number" min="1" name="widget-font-size" v-model="item_form.sbor_width" class="widget-input">
 </div>
 <div class="form-group">
   <label for="widget-color" :class="color_schema.text">
    Текст внутри
  </label>
- <color-picker :color="sbor_text_inside" v-model="sbor_text_inside" />
+ <color-picker :color="item_form.sbor_text_inside" v-model="item_form.sbor_text_inside" />
 </div>
 <div class="form-group">
   <label for="widget-color" :class="color_schema.text">
    Текст снаружи
  </label>
- <color-picker :color="sbor_text_outside" v-model="sbor_text_outside" />
+ <color-picker :color="item_form.sbor_text_outside" v-model="item_form.sbor_text_outside" />
 </div>
 <div class="form-group">
   <label for="widget-color" :class="color_schema.text">
    Цвет градусника
  </label>
- <color-picker :color="sbor_bar_color" v-model="sbor_bar_color" />
+ <color-picker :color="item_form.sbor_bar_color" v-model="item_form.sbor_bar_color" />
 </div>
 <div class="form-group">
   <label for="widget-color" :class="color_schema.text">
    Цвет заполнения
  </label>
- <color-picker :color="sbor_bar_fill_color" v-model="sbor_bar_fill_color" />
+ <color-picker :color="item_form.sbor_bar_fill_color" v-model="item_form.sbor_bar_fill_color" />
 </div>
 <div class="form-group">
   <label for="widget-color" :class="color_schema.text">
-    <input type="checkbox" v-model="sbor_border" name="checkbox">
+    <input type="checkbox" v-model="item_form.sbor_border" name="checkbox">
     Обводка
   </label>
-  <color-picker :color="sbor_bar_border_color" v-model="sbor_bar_border_color" />
+  <color-picker :color="item_form.sbor_bar_border_color" v-model="item_form.sbor_bar_border_color" />
 </div>
 </div>
 </form>
-
 
 </div>
 <div class="widget-preview" :class="color_schema.item">
@@ -231,7 +229,7 @@
     Превью
   </div>
   <div class="custom-widget">
-    <div :class="['custom-widget-message', widget_animation.class_name]" :style="{ color: widget_color, fontSize: widget_font_size + 'px' , 'animation-duration': (widget_animation_delay/1000) +'s' }" v-html="widget_type.message">
+    <div :class="['custom-widget-message', item_form.widget_animation.class_name]" :style="{ color: item_form.widget_color, fontSize: item_form.widget_font_size + 'px' , 'animation-duration': (item_form.widget_animation_delay/1000) +'s' }" v-html="item_form.widget_type.message">
     </div>
   </div>
 </div>
@@ -239,17 +237,26 @@
 </b-collapse>
 </div>
 
-
 <div class="widgets-list">
   <template v-for="(item,index) in items">
 
-    <div class="widget-item" :class="color_schema.item" v-b-toggle="'collapse-' + index " aria-expanded="false" @click="item.active = !item.active">
-      <div class="item-title">
+    <div class="widget-item" :class="color_schema.item"   >
+      <div class="item-title" v-b-toggle="'collapse-' + index " aria-expanded="false" @click="item.active = !item.active">
         {{ item.title }}
       </div>
       <div class="item-actions">
-        <button style="border: 0" class="copy-link btn-action" v-tooltip.hover.top.end="{ content: 'Копировать ссылку', class: 'tooltip-custom' }"/>
-        <button style="border: 0" :class="[{'collapse-link': !item.active, 'collapse-link-up': item.active } , 'btn-action']" />
+        <button
+        style="border: 0"
+        class="copy-link btn-action"
+        v-tooltip.hover.top.end="{ content: 'Копировать ссылку', class: 'tooltip-custom' }"
+        v-clipboard="'test-text' + index"
+        aria-controls="false"
+        />
+        <button
+        style="border: 0"
+        :class="[{'collapse-link': !item.active, 'collapse-link-up': item.active } , 'btn-action']"
+        v-b-toggle="'collapse-' + index " aria-expanded="false" @click="item.active = !item.active"
+        />
       </div>
     </div>
     <b-collapse :id="'collapse-' + index">
@@ -273,7 +280,12 @@
           {{c_item.animation}}
         </div>
         <div class="collapse-actions">
-          <button style="border: 0" class="edit-link btn-action" v-tooltip.hover.top.end="{ content: 'Редактировать', class: 'tooltip-custom' }"/>
+          <button
+          style="border: 0"
+          class="edit-link btn-action"
+          v-tooltip.hover.top.end="{ content: 'Редактировать', class: 'tooltip-custom' }"
+          @click="editForm(1)"
+          />
           <button style="border: 0" class="delete-link btn-action" v-b-modal.destroy-modal/>
         </div>
       </div>
@@ -284,23 +296,64 @@
 </div>
 </template>
 
-
 <script>
-  import { mapGetters } from 'vuex'
-  import SelectBlock from '@/components/SelectBlock.vue'
-  import ColorPicker from '@/components/widget-component/ColorPicker.vue';
-  import vue2Dropzone from 'vue2-dropzone'
-  import 'vue2-dropzone/dist/vue2Dropzone.min.css'
+import { mapGetters } from 'vuex'
+import SelectBlock from '@/components/SelectBlock.vue'
+import ColorPicker from '@/components/widget-component/ColorPicker.vue'
+import vue2Dropzone from 'vue2-dropzone'
+import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 
-  export default {
-    name: 'widgets',
-    components: {
-      SelectBlock,
-      ColorPicker,
-      vueDropzone: vue2Dropzone
-    },
-    data() {
-      return {
+export default {
+  name: 'widgets',
+  components: {
+    SelectBlock,
+    ColorPicker,
+    vueDropzone: vue2Dropzone
+  },
+  data () {
+    return {
+      dropzoneImageOptions: {
+        url: 'https://httpbin.org/post',
+        thumbnailWidth: 150,
+        maxFilesize: 0.5,
+        headers: { 'My-Awesome-Header': 'header value' },
+        addRemoveLinks: true,
+        maxFiles: 1
+      },
+      showImageDropzone: true,
+      widget_animation_options: [
+        { value: 'Стандартно', class_name: 'static' },
+        { value: 'Слайдер', class_name: 'widget-slider' },
+        { value: 'Список', class_name: 'widget-list' },
+        { value: 'Бегущая строка', class_name: 'crawl-line' }
+      ],
+      actions: false,
+      widget_subscribe_options: [
+        { value: 'Любая' },
+        { value: 'Платная' },
+        { value: 'Премиум' },
+        { value: 'Простая' }
+      ],
+      widget_type_options: [
+        { value: 'Последнее сообщение', message: 'Последнее сообщение: {{message}}' },
+        { value: 'Самый крупный донатер', message: 'Самый(-е) крупный(-е) донатер(-ы): {{users}} || {{name}} {{sum}}' },
+        { value: 'Последний донатер', message: 'Последний(-е) донатер(-ы): {{users}} || {{name}} {{sum}}' },
+        { value: 'Последний подписчик', message: 'Последний(-е) подписчик(-и): {{subscriber}}' },
+        { value: 'Количество подписчиков', message: 'Количество подписчиков: {{count}}' },
+        { value: 'Количество подписчиков за период', message: 'Количество подписчиков за период: {{count}} {{type}} {{period}}' },
+        { value: 'Сбор средств', message: 'Сбор средств - 1' }
+      ],
+      items: null,
+      item_form: {
+        widget_type: { value: 'Последнее сообщение', message: 'Последнее сообщение: {{message}}' },
+        widget_list_count: 20,
+        widget_subscribe: 'Любая',
+        widget_animation: { value: 'Стандартно', class_name: 'static' },
+        widget_animation_delay: 1000,
+        widget_color: '#ffffff',
+        widget_font_size: 16,
+        widget_amount: 900,
+        widget_max_amount: 1500,
         sbor_width: 400,
         sbor_height: 30,
         sbor_text_inside: '#FFFFFF',
@@ -308,142 +361,55 @@
         sbor_bar_color: '#525286',
         sbor_bar_fill_color: '#6C55D9',
         sbor_border: false,
-        sbor_bar_border_color: '#FFFFFF',
-        dropzoneImageOptions: {
-          url: 'https://httpbin.org/post',
-          thumbnailWidth: 150,
-          maxFilesize: 0.5,
-          headers: { "My-Awesome-Header": "header value" },
-          addRemoveLinks: true,
-          maxFiles: 1,
-        },
-        showImageDropzone: true,
-        widget_amount: 900,
-        widget_max_amount: 1500,
-        widget_font_size: 16,
-        widget_color: '#ffffff',
-        widget_animation: {value: 'Стандартно', class_name: 'static'},
-        widget_animation_options: [
-        {value: 'Стандартно', class_name: 'static'},
-        {value: 'Слайдер' , class_name: 'widget-slider'},
-        {value: 'Список', class_name: 'widget-list' },
-        {value: 'Бегущая строка', class_name: 'crawl-line' }
-        ],
-        widget_animation_delay: 1000,
-        widget_message: 'Последнее сообщение: {{message}}',
-        actions: false,
-        widget_list_count: 20,
-        widget_subscribe: 'Любая',
-        widget_subscribe_options: [
-        {value: 'Любая'},
-        {value: 'Платная' },
-        {value: 'Премиум' },
-        {value: 'Простая' }
-        ],
-        widget_type: { 
-          value: 'Последнее сообщение', 
-          message: 'Последнее сообщение: {{message}}'
-        },
-        widget_type_options: [
-        { value: 'Последнее сообщение', message: 'Последнее сообщение: {{message}}' },
-        { value: 'Самый крупный донатер', message: 'Самый(-е) крупный(-е) донатер(-ы): {{users}} || {{name}} {{sum}}' },
-        { value: 'Последний донатер', message: 'Последний(-е) донатер(-ы): {{users}} || {{name}} {{sum}}' },
-        { value: 'Последний подписчик', message: 'Последний(-е) подписчик(-и): {{subscriber}}' },
-        { value: 'Количество подписчиков', message: 'Количество подписчиков: {{count}}' },
-        { value: 'Количество подписчиков за период', message: 'Количество подписчиков за период: {{count}} {{type}} {{period}}' },
-        { value: 'Сбор средств', message: 'Сбор средств - 1' },
-        ],
-        items: [
-        {
-          title: 'Последнее сообщение',
-          collapseItem: [
-          { active: true, count: 20, animation: 'Бегущая строка'},
-          { active: false, count: 20, animation: 'Бегущая строка'},
-          { active: false, count: 20, animation: 'Бегущая строка'},
-          ],
-          active: false
-        },
-        {
-          title: 'Самый крупный донатер',
-          collapseItem: [
-          { active: true, count: 20, animation: 'Бегущая строка'},
-          { active: false, count: 20, animation: 'Бегущая строка'},
-          { active: false, count: 20, animation: 'Бегущая строка'},
-          ],
-          active: false
-        },
-        {
-          title: 'Последний донатер',
-          collapseItem: [
-          { active: true, count: 20, animation: 'Бегущая строка'},
-          { active: false, count: 20, animation: 'Бегущая строка'},
-          { active: true, count: 20, animation: 'Бегущая строка'},
-          ],
-          active: false
-        },
-        {
-          title: 'Последний подписчик',
-          collapseItem: [
-          { active: true, count: 20, animation: 'Бегущая строка'},
-          { active: false, count: 20, animation: 'Бегущая строка'},
-          { active: false, count: 20, animation: 'Бегущая строка'},
-          ],
-          active: false
-        },
-        {
-          title: 'Количество подписчиков за период',
-          collapseItem: [
-          { active: true, count: 20, animation: 'Бегущая строка'},
-          { active: false, count: 20, animation: 'Бегущая строка'},
-          { active: false, count: 20, animation: 'Бегущая строка'},
-          ],
-          active: false
-        }
-        ],
+        sbor_bar_border_color: '#FFFFFF'
       }
+    }
+  },
+  created () {
+    this.$http.get('widgets/').then((res) => {
+      this.items = res.body
+    })
+  },
+  computed: {
+    ...mapGetters(['color_schema']),
+    replaceWidgetMessage () {
+      return this.widget_message.replace(/({{message}})/, '<p> [текст сообщения]</p>')
     },
-    computed: {
-      ...mapGetters(['color_schema']),
-      replaceWidgetMessage() {
-        return this.widget_message.replace(/({{message}})/, '<p> [текст сообщения]</p>')
-      },
-      colorType() {
-        return this.item.colorType;
-      },
-      colorString() {
-        if (!this.colors[this.colorType]) {
-          return '';
-        }
-
-        if (this.colorType === 'hex') {
-          return this.colors.hex;
-        }
-
-        return this.colorType + '(' + Object.values(this.colors[this.colorType]).join(',') + ')';
-      },
-      sbor_percent() {
-        return (this.widget_amount * 100)/this.widget_max_amount
+    colorType () {
+      return this.item.colorType
+    },
+    colorString () {
+      if (!this.colors[this.colorType]) {
+        return ''
       }
+
+      if (this.colorType === 'hex') {
+        return this.colors.hex
+      }
+
+      return this.colorType + '(' + Object.values(this.colors[this.colorType]).join(',') + ')'
     },
-    methods: {
-      showPicker(item) {
-        if (item.color) {
-          this.colors = item.color;
-        }
+    sbor_percent () {
+      return (this.widget_amount * 100) / this.widget_max_amount
+    }
+  },
+  methods: {
+    showPicker (item) {
+      if (item.color) {
+        this.colors = item.color
+      }
 
-        this.displayPicker = true;
-      },
-
-      updateFromPicker(value) {
-        this.colors = value;
-        console.log('changed by picker');
-      },
-
-      updateFromInput(event) {
-        console.log('changed by input');
-      },
+      this.displayPicker = true
+    },
+    editForm (id) {
+      this.$http.get('widgets/' + id).then((res) => {
+        this.item_form = res.body
+      })
+      this.$root.$emit('bv::toggle::collapse', 'widget-construction')
+      this.actions = true
     }
   }
+}
 </script>
 
 <style scoped>
@@ -453,9 +419,6 @@
 .widget-header {
   grid-column: 1/3;
   grid-row: 1/3;
-/*  display: grid;
-  grid-template-columns: 670px 1fr;
-  grid-template-rows: 45px 1fr;*/
 }
 .widgets-actions {
   display: flex;
@@ -490,12 +453,11 @@ div#widget-construction {
   margin-top: 3px;
 }
 
-
 .widget-item {
   border-radius: 10px;
   grid-auto-rows: 60px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr auto;
   align-items: center;
   padding: 0 20px;
   margin-top: 20px;
@@ -553,7 +515,6 @@ margin-top: 25px;
   grid-column: 1/2;
   grid-row: 2/3;
 }
-
 
 .switch-checkbox {
   position: relative;
@@ -634,13 +595,13 @@ input:checked + .collapse-slider-checkbox {
     height: 20px;
     width: 20px;
   }
-  
+
   .custom-widget {
     margin-top: 22px;
   }
 </style>
 
-<style> 
+<style>
 input.widget-input {
   background: transparent;
   border-radius: 3px;
@@ -739,17 +700,18 @@ div.widget-slider, div.crawl-line {
 }
 
 .ingathering-text {
-    width: 50%;
-    height: 50%;
-    margin: auto;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+  width: 50%;
+  height: 50%;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 
 .max-amount {
-    justify-self: end;
+  justify-self: end;
 }
+
 </style>

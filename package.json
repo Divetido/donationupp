@@ -12,6 +12,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.7.2",
     "@fortawesome/vue-fontawesome": "^0.1.5",
     "@minogin/vue-drag-resize-rotate": "^1.0.5",
+    "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0-rc.13",
     "chart.js": "^2.7.3",
@@ -24,11 +25,13 @@
     "vue": "^2.6.8",
     "vue-bootstrap-slider": "^2.1.8",
     "vue-chartjs": "^3.4.0",
+    "vue-clipboards": "^1.2.4",
     "vue-color": "^2.7.0",
     "vue-credit-card-field": "^0.2.10",
     "vue-css-donut-chart": "^1.0.2",
     "vue-directive-tooltip": "^1.5.1",
     "vue-free-transform": "^1.0.11",
+    "vue-infinite-scroll": "^2.0.2",
     "vue-lodash": "^2.0.2",
     "vue-orderby-mixin": "^1.0.0",
     "vue-resource": "^1.5.1",
@@ -46,9 +49,8 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
-    "node-sass": "^4.12.0",
-    "sass-loader": "^7.1.0",
-    "vue-template-compiler": "^2.5.21"
+    "vue-template-compiler": "^2.5.21",
+    "webpack-chain": "^6.0.0"
   },
   "eslintConfig": {
     "root": true,

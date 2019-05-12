@@ -25,91 +25,91 @@ export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
-  {
-    path: '/',
-    name: 'home',
-    component: Home
-  },
-  {
-    path: '/dashboard',
-    name: 'dashboard',
-    component: Dashboard
-  },
-  {
-    path: '/subscribers',
-    name: 'subscribers',
-    component: Subscribers
-  },
-  {
-    path: '/payments',
-    name: 'payments',
-    component: Payments
-  },
-  {
-    path: '/stream',
-    name: 'stream',
-    component: Streams
-  },
-  {
-    path: '/milestone',
-    name: 'milestone',
-    component: Milestone,
-  },
-  {
-    path: '/widgets',
-    name: 'widgets',
-    component: Widgets
-  },
+    {
+      path: '/',
+      name: 'home',
+      component: Home
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: Dashboard
+    },
+    {
+      path: '/subscribers',
+      name: 'subscribers',
+      component: Subscribers
+    },
+    {
+      path: '/payments',
+      name: 'payments',
+      component: Payments
+    },
+    {
+      path: '/stream',
+      name: 'stream',
+      component: Streams
+    },
+    {
+      path: '/milestone',
+      name: 'milestone',
+      component: Milestone
+    },
+    {
+      path: '/widgets',
+      name: 'widgets',
+      component: Widgets
+    },
 
-  {
-    path: '/settings/account',
-    name: 'account',
-    component: Account
-  },
-  {
-    path: '/settings/donat',
-    name: 'donat',
-    component: Donat
-  },
-  {
-    path: '/settings/alerts',
-    name: 'alerts',
-    component: Alerts
-  },
-  {
-    path: '/policy',
-    name: 'policy',
-    component: Policy
-  },
-  {
-    path: '/help',
-    name: 'help',
-    component: Help
-  },
-  {
-    path: '/player',
-    name: 'player',
-    component: Player
-  },
-  {
-    path: '/advancement',
-    name: 'advancement',
-    component: Advancement
-  },
-  {
-    path: '/form-donation',
-    name: 'form-donation',
-    component: FormDonation
-  },
-  {
-    path: '/search',
-    name: 'search',
-    component: Search
-  },
-  {
-    path: '/profile',
-    name: 'profile',
-    component: Profile
-  }
+    {
+      path: '/settings/account',
+      name: 'account',
+      component: Account
+    },
+    {
+      path: '/settings/donat',
+      name: 'donat',
+      component: Donat
+    },
+    {
+      path: '/settings/alerts',
+      name: 'alerts',
+      component: Alerts
+    },
+    {
+      path: '/policy',
+      name: 'policy',
+      component: Policy
+    },
+    {
+      path: '/help',
+      name: 'help',
+      component: Help
+    },
+    {
+      path: '/player',
+      name: 'player',
+      component: Player
+    },
+    {
+      path: '/advancement',
+      name: 'advancement',
+      component: Advancement
+    },
+    {
+      path: '/form-donation',
+      name: 'form-donation',
+      component: FormDonation
+    },
+    {
+      path: '/search',
+      name: 'search',
+      component: Search
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: Profile
+    }
   ]
 })

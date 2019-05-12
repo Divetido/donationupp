@@ -1,40 +1,40 @@
 <template>
-  <div class="nav-bar" :class="this.$item_color_class" :style="{ 'justify-content': !user ? 'flex-end' : 'space-beetween'  }">
+  <div class="nav-bar" :class="color_schema.item" :style="{ 'justify-content': !user ? 'flex-end' : 'space-beetween'  }">
     <div class="streamer-search text" :class="color_schema.global" v-if="user">
-       <router-link to="/search"><img src="../assets/search.svg" alt="search" class="search-icon"></router-link>
-      <input type="text" name="streamer-search" placeholder="Введите ник стримера…" :class="color_schema.title_text">  
+     <router-link to="/search"><img src="../assets/search.svg" alt="search" class="search-icon"></router-link>
+     <input type="text" name="streamer-search" placeholder="Введите ник стримера…" :class="color_schema.title_text">
+   </div>
+   <div class="user-actions">
+    <div class="theme-btn">
+      <label class="switch" for="switch_color">
+        <input type="checkbox" id='switch_color' v-model="current_state_checkbox">
+        <span class="slider-checkbox round"></span>
+      </label>
     </div>
-    <div class="user-actions">
-      <div class="theme-btn">
-        <label class="switch" for="switch_color">
-          <input type="checkbox" id='switch_color' v-model="current_state_checkbox">
-          <span class="slider-checkbox round"></span>
-        </label>
-      </div>
-      <div class="avatar">
-        <img src="../assets/avatar.png">
-      </div>
+    <div class="avatar">
+      <img src="../assets/avatar.png">
     </div>
   </div>
+</div>
 </template>
 <script>
-  import { mapGetters, mapState } from 'vuex';
+import { mapGetters, mapState } from 'vuex'
 
-  export default {
-    name: 'nav-bar',
-    computed: {
-      ...mapState(['state_checkbox']),
-      ...mapGetters(['color_schema', 'user']),
-      current_state_checkbox: {
-        set(current_state_checkbox) {
-          this.$store.commit('set_state_checkbox', current_state_checkbox)
-        },
-        get(){
-          return this.state_checkbox
-        }
+export default {
+  name: 'nav-bar',
+  computed: {
+    ...mapState(['state_checkbox']),
+    ...mapGetters(['color_schema', 'user']),
+    current_state_checkbox: {
+      set (current_state_checkbox) {
+        this.$store.commit('set_state_checkbox', current_state_checkbox)
+      },
+      get () {
+        return this.state_checkbox
       }
     }
   }
+}
 
 </script>
 
@@ -124,7 +124,6 @@ input:checked + .slider-checkbox:before {
 .slider-checkbox.round:before {
   border-radius: 50%;
 }
-
 
 label {
   margin-bottom: 0;

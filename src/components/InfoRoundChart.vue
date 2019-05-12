@@ -36,51 +36,51 @@
 </div>
 </template>
 <script>
-  import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 
-  export default {
-    name: 'info-round-chart',
-    props:  {
-      sections: {
-        type: Array,
-        default: {}
-      },
-      legends: {
-        type: Boolean,
-        default: false
-      },
-      total: {
-        type: Number,
-        default: 100
-      },
-      title: {
-        type: String
-      },
-      amount: {
-        type: Number,
-        default: 0
-      }
+export default {
+  name: 'info-round-chart',
+  props: {
+    sections: {
+      type: Array,
+      default: {}
     },
-    computed: {
-      ...mapGetters(['color_schema']),
-      background_color(){
-        return this.$state_checkbox ? 'white' : '#37376A'
-      },
-      amountPercent() {
-        return (this.total/100)*this.amount
-      },
-      amountRemainder () {
-        return this.amount - this.amountPercent
-      },
-      customTotal() {
-        if (this.title == 'Сбор средств' && this.amount == 0) {
-          return 'нет активных сборов'
-        }
-
-        return this.total + '%'
-      }
+    legends: {
+      type: Boolean,
+      default: false
+    },
+    total: {
+      type: Number,
+      default: 100
+    },
+    title: {
+      type: String
+    },
+    amount: {
+      type: Number,
+      default: 0
     }
-  };
+  },
+  computed: {
+    ...mapGetters(['color_schema', 'user', 'state_checkbox']),
+    background_color () {
+      return this.state_checkbox ? 'white' : '#37376A'
+    },
+    amountPercent () {
+      return (this.total / 100) * this.amount
+    },
+    amountRemainder () {
+      return this.amount - this.amountPercent
+    },
+    customTotal () {
+      if (this.title == 'Сбор средств' && this.amount == 0) {
+        return 'нет активных сборов'
+      }
+
+      return this.total + '%'
+    }
+  }
+}
 </script>
 <style >
 .round-chart {
@@ -128,7 +128,7 @@ h1.total {
 
 </style>
 
-<style> 
+<style>
   .cdc-legend {
     align-self: end;
   }

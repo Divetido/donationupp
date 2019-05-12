@@ -21,16 +21,10 @@
             </b-dropdown-item>
           </b-dropdown>
         </div>
-<!--         <b-form-select
-        @change="sortable(sortKey)"
-        v-model="sortKey"
-        :options="sortOptions"
-        class="sort-select"
-        /> -->
       </div>
     </div>
   </div>
-  <div class="list-body">
+  <div class="list-body" id="list-body">
     <list-item
     :avatar_url="subscribe.user.avatar"
     :nickname="subscribe.user.nickname"
@@ -44,16 +38,16 @@
 </template>
 <script>
   import ListItem from '@/components/ListItem.vue'
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapState, mapActions } from 'vuex'
 
   export default {
     name: 'subscribers-list',
     components: {
       ListItem
     },
-    data: function() {
+    data() {
       return {
-        subscribers: null,
+        busy: false,
         sortKey: { value: 'id', text: 'По порядку' },
         sortOptions: [
         { value: 'id', text: 'По порядку' },
@@ -62,21 +56,35 @@
         ]
       }
     },
-    created () {
-      this.$http.get('subscribers/').then((res) => {
-        this.subscribers = res.body;
+    mounted(){
+      console.log('route', this.route)
+      const listElm = document.querySelector('#list-body');
+      listElm.addEventListener('scroll', e => {
+        if(listElm.scrollTop + listElm.clientHeight >= listElm.scrollHeight) {
+          this.loadMore();
+        }
       });
+      this.$store.dispatch('fetchSubscribers')
     },
     methods: {
-      sortable(value) {
+      ...mapActions(['updateSubscribers']),
+      sortable (value) {
         if (value == 'donate') {
-          return _.orderBy(this.subscribers, value).reverse() ;
+          return _.orderBy(this.subscribers, value).reverse()
         }
-        return _.orderBy(this.subscribers, value) ;
+        return _.orderBy(this.subscribers, value)
+      },
+      loadMore() {
+        this.busy = true;
+        setTimeout(() => {
+         this.$store.dispatch('updateSubscribers');
+         this.busy = false;
+       }, 200);
       }
     },
     computed: {
-      ...mapGetters(['color_schema'])
+      ...mapGetters(['color_schema', 'user', 'state_checkbox']),
+      ...mapState(['subscribers'])
     }
   }
 </script>
@@ -120,6 +128,6 @@
   background: url("../assets/play-button.svg") no-repeat right 0.75rem center/8px 10px;
 }
 .list-actions {
-    width: 40%;
+  width: 40%;
 }
 </style>

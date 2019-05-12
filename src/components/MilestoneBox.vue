@@ -48,15 +48,15 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 
-  export default {
-    name: 'milestone-box',
-    props: ['money', 'badge_count', 'animation_count', 'sound_count'],
-    computed: {
-      ...mapGetters(['color_schema'])
-    }
+export default {
+  name: 'milestone-box',
+  props: ['money', 'badge_count', 'animation_count', 'sound_count'],
+  computed: {
+    ...mapGetters(['color_schema'])
   }
+}
 </script>
 
 <style>

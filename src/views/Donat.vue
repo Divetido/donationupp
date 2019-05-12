@@ -36,10 +36,10 @@
 						<form id="donation-form">
 							<label>Верхняя панель страницы</label>
 							<div class="group-radio-form">
-								
+
 								<div class="group-input">
 									<label >
-										
+
 										<div class="checkbox-form-donation">
 											<input type="radio" name="background-default" value="default" v-model="background_image" class="form-donation-radio">
 											<span class="custom-checkbox"></span>
@@ -52,7 +52,7 @@
 								</div>
 								<div class="group-input">
 									<label>
-										
+
 										<div class="checkbox-form-donation">
 											<input type="radio" name="background-color" value="color" v-model="background_image" class="form-donation-radio">
 											<span class="custom-checkbox"></span>
@@ -65,7 +65,7 @@
 								</div>
 								<div class="group-input">
 									<label  >
-										
+
 										<div class="checkbox-form-donation">
 											<input type="radio" name="background-image" value="image" v-model="background_image" class="form-donation-radio">
 											<span class="custom-checkbox"></span>
@@ -89,14 +89,13 @@
 									</div>
 								</div>
 
-
 							</form>
 						</div>
 						<div class="donation-form-preview" :class="color_schema.item">
 							<div class="top-block">
 								<div :class="color_schema.text"> Превью </div>
-								<router-link to="/form-donation" class="form-donation-page-link" :class="color_schema.title_text"> 
-									Посмотреть полный размер 
+								<router-link to="/form-donation" class="form-donation-page-link" :class="color_schema.title_text">
+									Посмотреть полный размер
 									<img src="../assets/right-arrow.svg" alt="arrow" class="arrow-icon">
 								</router-link>
 							</div>
@@ -127,60 +126,60 @@
 		</div>
 	</template>
 
-	<script>
+<script>
 
-		import { mapGetters } from 'vuex'
-		import vue2Dropzone from 'vue2-dropzone'
-		import 'vue2-dropzone/dist/vue2Dropzone.min.css'
+import { mapGetters } from 'vuex'
+import vue2Dropzone from 'vue2-dropzone'
+import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 
-		export default {
-			name: 'donat',
-			components: {
-				vueDropzone: vue2Dropzone
-			},
-			computed: {
-				...mapGetters(['color_schema', 'user'])
-			},
-			data(){
-				return {
-					dropzoneImageOptions: {
-						url: 'https://httpbin.org/post',
-						thumbnailWidth: 150,
-						maxFilesize: 0.5,
-						headers: { "My-Awesome-Header": "header value" },
-						addRemoveLinks: true,
-						maxFiles: 1,
-					},
-					showImageDropzone: true,
-					donat_amount: 500,
-					background_image: 'default',
-					paymentItems: [
-					{
-						name: 'Credit card',
-						icon: require('../assets/Credit card.svg'),
-						number: '4275 **** **** 4563'
-					},          
-					{
-						name: 'Web Money',
-						icon: require('../assets/webmoney-paying-logo.svg'),
-						number: '+79281248796'
-					},          
-					{
-						name: 'Yandex Money',
-						icon: require('../assets/yandex-pay-logo.svg'),
-						number: '410011435701035'
-					},          
-					{
-						name: 'Qiwi',
-						icon: require('../assets/qiwi.svg'),
-						number: '+79281248796'
-					},
-					]
+export default {
+  name: 'donat',
+  components: {
+    vueDropzone: vue2Dropzone
+  },
+  computed: {
+    ...mapGetters(['color_schema', 'user'])
+  },
+  data () {
+    return {
+      dropzoneImageOptions: {
+        url: 'https://httpbin.org/post',
+        thumbnailWidth: 150,
+        maxFilesize: 0.5,
+        headers: { 'My-Awesome-Header': 'header value' },
+        addRemoveLinks: true,
+        maxFiles: 1
+      },
+      showImageDropzone: true,
+      donat_amount: 500,
+      background_image: 'default',
+      paymentItems: [
+        {
+          name: 'Credit card',
+          icon: require('../assets/Credit card.svg'),
+          number: '4275 **** **** 4563'
+        },
+        {
+          name: 'Web Money',
+          icon: require('../assets/webmoney-paying-logo.svg'),
+          number: '+79281248796'
+        },
+        {
+          name: 'Yandex Money',
+          icon: require('../assets/yandex-pay-logo.svg'),
+          number: '410011435701035'
+        },
+        {
+          name: 'Qiwi',
+          icon: require('../assets/qiwi.svg'),
+          number: '+79281248796'
+        }
+      ]
 
-				}
-			}
-		}
-	</script>
+    }
+  }
+}
+</script>
 
 	<style scoped>
 	.settings.donat {
@@ -208,7 +207,7 @@
 		border-radius: 10px;
 		padding: 0 25px;
 		display: grid;
-		grid-template-columns: 2fr 2fr 1fr; 
+		grid-template-columns: 2fr 2fr 1fr;
 		font-size: 13px;
 		align-items: center;
 
@@ -225,7 +224,7 @@
 	.background-image-block {
 		width: 160px;
 		height: 65px;
-		border-radius: 3px; 
+		border-radius: 3px;
 		margin-top: 15px;
 	}
 
@@ -311,7 +310,7 @@
 
 	.preview-form-donation-page {
 		position: absolute;
-		width: 300%; 
+		width: 300%;
 		/* height: 100%; */
 		transform: scale(0.3);
 		transform-origin: top left;
@@ -326,11 +325,9 @@
 
 </style>
 
-
-<style scoped> 
+<style scoped>
 
 /*custom checkbox*/
-
 
 .checkbox-form-donation {
 	position: relative;
@@ -352,7 +349,7 @@ input.form-donation-radio {
 	border-radius: 3px;
 }
 
-input.form-donation-radio:hover ~ .custom-checkbox, 
+input.form-donation-radio:hover ~ .custom-checkbox,
 input.form-donation-radio:checked ~ .custom-checkbox {
 	background: url(../assets/check-radio.svg) no-repeat center, white;
 }

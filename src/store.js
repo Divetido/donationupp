@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import client from 'api-client'
 
 Vue.use(Vuex)
 
@@ -52,7 +53,8 @@ export default new Vuex.Store({
     color_schema: {
       dark: dark_theme,
       light: light_theme
-    }
+    },
+    subscribers: []
   },
   getters: {
     state_checkbox: state => {
@@ -62,18 +64,36 @@ export default new Vuex.Store({
       return state.state_checkbox ? state.color_schema.light : state.color_schema.dark
     },
     user: state => {
-      return state.user_type == 'user' ? true : false
+      return state.user_type == 'user'
     }
   },
   mutations: {
     set_state_checkbox: (state, payload) => {
-      state.state_checkbox = payload;
+      state.state_checkbox = payload
     },
     set_user_type: (state, payload) => {
-      state.user_type = payload;
+      state.user_type = payload
+    },
+    setSubscribers (state, subscribers) {
+      state.subscribers = subscribers
+    },
+    addSubscribers (state, subscribers) {
+      state.subscribers.push(...subscribers)
     }
   },
   actions: {
-
+    fetchSubscribers ({ commit }) {
+      return client
+        .fetchSibscribers()
+        .then(subscribers => commit('setSubscribers', subscribers))
+    },
+    updateSubscribers ({ commit }) {
+      return client
+        .fetchSibscribers()
+        .then(subscribers => commit('addSubscribers', subscribers))
+    },
+    // fetchActivity ({ commit }) {
+      
+    // }
   }
 })

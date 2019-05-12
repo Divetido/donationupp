@@ -28,55 +28,55 @@
 
 </template>
 <script>
-  import LogoBox from './components/LogoBox.vue'
-  import NavBar from './components/NavBar.vue'
-  import SideBar from './components/SideBar.vue'
-  import VueCharts from 'vue-chartjs'
-  import { mapGetters } from 'vuex'
+import LogoBox from './components/LogoBox.vue'
+import NavBar from './components/NavBar.vue'
+import SideBar from './components/SideBar.vue'
+import VueCharts from 'vue-chartjs'
+import { mapGetters } from 'vuex'
 
-  export default {
-    name: 'App',
-    components: {
-      LogoBox,
-      NavBar,
-      SideBar,
-      VueCharts
-    },
-    data() {
-      return {
-        paymentItems: [
+export default {
+  name: 'App',
+  components: {
+    LogoBox,
+    NavBar,
+    SideBar,
+    VueCharts
+  },
+  data () {
+    return {
+      paymentItems: [
         {
           name: 'Credit card',
           icon: require('./assets/Credit card.svg'),
           number: '4275 **** **** 4563'
-        },          
+        },
         {
           name: 'Web Money',
           icon: require('./assets/webmoney-paying-logo.svg'),
           number: '+79281248796'
-        },          
+        },
         {
           name: 'Yandex Money',
           icon: require('./assets/yandex-pay-logo.svg'),
           number: '410011435701035'
-        },          
+        },
         {
           name: 'Qiwi',
           icon: require('./assets/qiwi.svg'),
           number: '+79281248796'
-        },
-        ]
-      }
-    },
-    computed: {
-      ...mapGetters(['color_schema']),
-      modalItems() {
-        var arr = [];
-        this.paymentItems.forEach(function(el) { arr.push({value: el.name}) });
-        return arr
-      }
+        }
+      ]
+    }
+  },
+  computed: {
+    ...mapGetters(['color_schema']),
+    modalItems () {
+      var arr = []
+      this.paymentItems.forEach(function (el) { arr.push({ value: el.name }) })
+      return arr
     }
   }
+}
 </script>
 
 <style>
@@ -282,8 +282,6 @@ padding: 33px;
   opacity: 1;
 }
 
-
-
 ::-webkit-scrollbar
 {
   width: 5px;
@@ -305,11 +303,6 @@ padding: 33px;
 * {
   outline: none !important;
 }
-
-
-
-
-
 
 input.text-input {
   background: transparent;
@@ -336,7 +329,6 @@ img.avatar-icon {
   height: 20px;
   margin-right: 10px;
 }
-
 
 .profile-block {
   grid-column: 1/2;
@@ -428,8 +420,7 @@ img.play-btn {
   }*/
 </style>
 
-
-<style> 
+<style>
 @media (max-width: 990px) {
   div#app {
     grid-template-columns: 103px 1fr;
@@ -458,8 +449,6 @@ img.play-btn {
   }
 }
 
-
-
 @media (max-width: 800px) {
   .content-app {
     padding: 23px;
@@ -469,12 +458,9 @@ img.play-btn {
   }
 }
 
-
-
 </style>
 
-
-<style> 
+<style>
 .vue-tooltip.tooltip-custom {
   background-color: #D6D6EA;
   color: #282855;

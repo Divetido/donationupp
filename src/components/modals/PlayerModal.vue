@@ -23,19 +23,19 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex'
 
-  export default {
-    name: 'player-modal',
-    methods: {
-      hideModal() {
-        this.$refs.player_modal.hide()
-      }
-    },
-    computed: {
-      ...mapGetters(['color_schema', 'user'])
+export default {
+  name: 'player-modal',
+  methods: {
+    hideModal () {
+      this.$refs.player_modal.hide()
     }
+  },
+  computed: {
+    ...mapGetters(['color_schema', 'user'])
   }
+}
 </script>
 
 <style>

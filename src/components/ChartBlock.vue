@@ -27,21 +27,21 @@
 </template>
 
 <script>
-  import BarChart from '@/components/BarChart.vue'
-  import { mapGetters } from 'vuex'
+import BarChart from '@/components/BarChart.vue'
+import { mapGetters } from 'vuex'
 
-  export default {
-    name: 'chart-block',
-    components: {
-      BarChart
-    },
-    computed: {
-      ...mapGetters(['color_schema'])
-    },
-    data() {
-      return {
-        chart_sections: 'Январь',
-        chart_options: [
+export default {
+  name: 'chart-block',
+  components: {
+    BarChart
+  },
+  computed: {
+    ...mapGetters(['color_schema'])
+  },
+  data () {
+    return {
+      chart_sections: 'Январь',
+      chart_options: [
         { value: 'Январь' },
         { value: 'Февраль' },
         { value: 'Март' },
@@ -54,39 +54,39 @@
         { value: 'Октябрь' },
         { value: 'Ноябрь' },
         { value: 'Декабрь' }
-        ],
-        datasets: {
-          labels: Array.from({length: 30}, (v, k) => (k+1 + ' Января')) ,
-          datasets: [{
-            data: Array(30).fill().map(() => Math.round(Math.random() * (1000 - 600) + 600)),
-            backgroundColor: '#8585AA',
-          }]
+      ],
+      datasets: {
+        labels: Array.from({ length: 30 }, (v, k) => (k + 1 + ' Января')),
+        datasets: [{
+          data: Array(30).fill().map(() => Math.round(Math.random() * (1000 - 600) + 600)),
+          backgroundColor: '#8585AA'
+        }]
+      },
+      dataset_options: {
+        layout: {
+          padding: {
+            left: 10,
+            right: 10,
+            bottom: 50
+          }
         },
-        dataset_options: {
-          layout: {
-            padding: {
-              left: 10,
-              right: 10,
-              bottom: 50
-            }
-          },
-          tooltips: {
-            mode: 'point',
-            backgroundColor: '#D6D6EA',
-            bodyFontColor: '#282855',
-            bodyFontSize: 8,
-            xPadding: 18,
-            yPadding: 15,
-            position: 'nearest',
-            displayColors: false,
-            titleFontColor: '#282855',
-            titleFontSize: 12,
-            callbacks: {
-             title: function(tooltipItem, data) {
-               return tooltipItem[0].yLabel + ' EUR';
-             },
-             label: function(tooltipItem, data) { 
-              return tooltipItem.xLabel ;
+        tooltips: {
+          mode: 'point',
+          backgroundColor: '#D6D6EA',
+          bodyFontColor: '#282855',
+          bodyFontSize: 8,
+          xPadding: 18,
+          yPadding: 15,
+          position: 'nearest',
+          displayColors: false,
+          titleFontColor: '#282855',
+          titleFontSize: 12,
+          callbacks: {
+            title: function (tooltipItem, data) {
+              return tooltipItem[0].yLabel + ' EUR'
+            },
+            label: function (tooltipItem, data) {
+              return tooltipItem.xLabel
             }
           }
         },
@@ -98,34 +98,34 @@
         scales: {
           xAxes: [{
             ticks: {
-                    display: false //this will remove only the label
-                  }
-                }],
-                yAxes: [{
-                  ticks: {
-                    min: 0,
-                    max: 1000,
-                    beginAtZero:true,
-                    stepSize: 200
-                  }
-                }]
-              }
+              display: false // this will remove only the label
             }
-          }
-        },
-        methods: {
-          onChange(value) {
-            this.datasets = {
-              labels: Array.from({length: 30}, (v, k) => (k+1 + value)) ,
-              datasets: [{
-                data: Array(30).fill().map(() => Math.round(Math.random() * (1000 - 600) + 600)),
-                backgroundColor: '#8585AA',
-              }]
+          }],
+          yAxes: [{
+            ticks: {
+              min: 0,
+              max: 1000,
+              beginAtZero: true,
+              stepSize: 200
             }
-          }
+          }]
         }
       }
-    </script>
+    }
+  },
+  methods: {
+    onChange (value) {
+      this.datasets = {
+        labels: Array.from({ length: 30 }, (v, k) => (k + 1 + value)),
+        datasets: [{
+          data: Array(30).fill().map(() => Math.round(Math.random() * (1000 - 600) + 600)),
+          backgroundColor: '#8585AA'
+        }]
+      }
+    }
+  }
+}
+</script>
 
     <style scoped>
     .chart, .period {

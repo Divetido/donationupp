@@ -11,7 +11,7 @@
 
 			<div class="custom-player" :class="color_schema.item">
 				<div class="player-actions">
-					<button class="default-button player-button"> 
+					<button class="default-button player-button">
 						<div class="arrow-right"></div>
 					</button>
 					<div class="back-step">
@@ -112,39 +112,39 @@
 
 </template>
 <script>
-	import { mapGetters } from 'vuex'
-	import bFormSlider from 'vue-bootstrap-slider/es/form-slider';
-	import BProgress from 'bootstrap-vue/es/components/progress/progress'
-	import PlayerModal from '../components/modals/PlayerModal.vue'
+import { mapGetters } from 'vuex'
+import bFormSlider from 'vue-bootstrap-slider/es/form-slider'
+import BProgress from 'bootstrap-vue/es/components/progress/progress'
+import PlayerModal from '../components/modals/PlayerModal.vue'
 
-	export default {
-		name: 'player',
-		component: {
-			bFormSlider,
-			BProgress,
-			PlayerModal
-		},
-		data() {
-			return {
-				currentTime: '00:00',
-				player_amount: 500,
-				track_time: 30,
-				playerItems: [
-				{trackName: 'Queen - Another One Bites The Dust', username: 'Marissa_10', track_time: '3:47'},
-				{trackName: 'Queen - Another One Bites The Dust', username: 'Marissa_10', track_time: '3:47'},
-				{trackName: 'Queen - Another One Bites The Dust', username: 'Marissa_10', track_time: '3:47'},
-				{trackName: 'Queen - Another One Bites The Dust', username: 'Marissa_10', track_time: '3:47'},
-				{trackName: 'Queen - Another One Bites The Dust', username: 'Marissa_10', track_time: '3:47'}
-				]
-			}
-		},
-		computed: {
-			...mapGetters(['color_schema'])
-		},
-		methods: {
+export default {
+  name: 'player',
+  component: {
+    bFormSlider,
+    BProgress,
+    PlayerModal
+  },
+  data () {
+    return {
+      currentTime: '00:00',
+      player_amount: 500,
+      track_time: 30,
+      playerItems: [
+        { trackName: 'Queen - Another One Bites The Dust', username: 'Marissa_10', track_time: '3:47' },
+        { trackName: 'Queen - Another One Bites The Dust', username: 'Marissa_10', track_time: '3:47' },
+        { trackName: 'Queen - Another One Bites The Dust', username: 'Marissa_10', track_time: '3:47' },
+        { trackName: 'Queen - Another One Bites The Dust', username: 'Marissa_10', track_time: '3:47' },
+        { trackName: 'Queen - Another One Bites The Dust', username: 'Marissa_10', track_time: '3:47' }
+      ]
+    }
+  },
+  computed: {
+    ...mapGetters(['color_schema'])
+  },
+  methods: {
 
-		}
-	}
+  }
+}
 </script>
 
 <style>
@@ -372,22 +372,21 @@ img.img-video {
 	}
 }
 
-
 .item-action > button:hover span {
 	display: none;
 }
 
 .arrow-right {
-	width: 0; 
-	height: 0; 
+	width: 0;
+	height: 0;
 	border-top: 6px solid transparent;
 	border-bottom: 6px solid transparent;
 
 	border-left: 10px solid white;
 }
 .arrow-left {
-	width: 0; 
-	height: 0; 
+	width: 0;
+	height: 0;
 	border-top: 6px solid transparent;
 	border-bottom: 6px solid transparent;
 

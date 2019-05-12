@@ -7,23 +7,23 @@
   </div>
 </template>
 <script>
-  import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 
-  export default {
-    name: 'logo-box',
-    data() {
-      return {
-        dark: require('../assets/logo/logo-dark.png'),
-        light: require('../assets/logo.png')
-      }
-    },
-    computed: {
-      ...mapGetters(['color_schema']),
-      logo_path() {
-        return this.$state_checkbox ? this.dark : this.light
-      }
+export default {
+  name: 'logo-box',
+  data () {
+    return {
+      dark: require('../assets/logo/logo-dark.png'),
+      light: require('../assets/logo.png')
+    }
+  },
+  computed: {
+    ...mapGetters(['color_schema', 'user', 'state_checkbox']),
+    logo_path () {
+      return this.state_checkbox ? this.dark : this.light
     }
   }
+}
 </script>
 
 <style scoped>

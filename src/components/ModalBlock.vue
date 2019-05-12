@@ -129,47 +129,47 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex'
 
-  export default {
-    name: 'modal-block',
-    compenents: {
+export default {
+  name: 'modal-block',
+  compenents: {
+  },
+  props: {
+    id: {
+      type: String
     },
-    props: {
-      id: {
-        type: String
-      },
-      title: {
-        type: String
-      },
-      items: {
-        type: Array
-      }
+    title: {
+      type: String
     },
-    data(){
-      return{
-        badge_value: 'Выберите вариант',
-        badges: [
-        {value: 'Первый'},
-        {value: 'Второй'}
-        ],
-      }
+    items: {
+      type: Array
+    }
+  },
+  data () {
+    return {
+      badge_value: 'Выберите вариант',
+      badges: [
+        { value: 'Первый' },
+        { value: 'Второй' }
+      ]
+    }
+  },
+  methods: {
+    hideModal () {
+      this.$refs.modal.hide()
     },
-    methods: {
-      hideModal() {
-        this.$refs.modal.hide()
-      },
-      updateUserType(value) {
-        this.$store.commit('set_user_type', value)
-      }
-    },
-    computed: {
-      ...mapGetters(['color_schema', 'user']),
-      item_value(){
-        return this.items[0].value
-      }
+    updateUserType (value) {
+      this.$store.commit('set_user_type', value)
+    }
+  },
+  computed: {
+    ...mapGetters(['color_schema', 'user']),
+    item_value () {
+      return this.items[0].value
     }
   }
+}
 </script>
 
 <style>
@@ -196,8 +196,6 @@
   width: 100%;
   height: 100%;
 }
-
-
 
 a.social-button {
   width: 45px;

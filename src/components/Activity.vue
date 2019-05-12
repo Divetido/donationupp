@@ -32,51 +32,51 @@
 </template>
 
 <script>
-	import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 
-	export default {
-		name: 'activity',
-		data() {
-			return {
-				activityItems: null,
-				icon_path: {
-					"simple": require("../assets/simple.svg"),
-					"paid": {
-						dark: require("../assets/platn.svg"),
-						light: require("../assets/platn_dark.svg")},
-						"premium": require("../assets/prem-dark.svg")
-					},
-				}
-			},
-			props: ['route'],
-			computed: {
-				...mapGetters(['color_schema', 'user'])
-			},
-			created () {
-				this.$http.get(this.route).then((res) => {
-					this.activityItems = res.body;
-				});
-			},
-			methods: {
-				state_message(value) {
-					if (value != '') {
-						return require('../assets/active message.svg')
-					} else {
-						return require('../assets/message.svg')
-					}
-				},
-				update_icon(value){
-					if (value == 'paid') {
-						return (this.$state_checkbox) ? this.icon_path[value]['light'] : this.icon_path[value]['dark']
-					} else {
-						return this.icon_path[value]
-					}
-				}
-			}
-		}
-	</script>
+export default {
+  name: 'activity',
+  data () {
+    return {
+      activityItems: null,
+      icon_path: {
+        'simple': require('../assets/simple.svg'),
+        'paid': {
+          dark: require('../assets/platn.svg'),
+          light: require('../assets/platn_dark.svg') },
+        'premium': require('../assets/prem-dark.svg')
+      }
+    }
+  },
+  props: ['route'],
+  computed: {
+    ...mapGetters(['color_schema', 'user', 'state_checkbox'])
+  },
+  created () {
+    this.$http.get(this.route).then((res) => {
+      this.activityItems = res.body
+    })
+  },
+  methods: {
+    state_message (value) {
+      if (value != '') {
+        return require('../assets/active message.svg')
+      } else {
+        return require('../assets/message.svg')
+      }
+    },
+    update_icon (value) {
+      if (value == 'paid') {
+        return (this.state_checkbox) ? this.icon_path[value]['light'] : this.icon_path[value]['dark']
+      } else {
+        return this.icon_path[value]
+      }
+    }
+  }
+}
+</script>
 
-	<style scoped> 
+	<style scoped>
 	.user-info-activity {
 		justify-self: end;
 		display: flex;

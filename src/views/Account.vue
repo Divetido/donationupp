@@ -89,38 +89,38 @@
   </div>
 </template>
 <script>
-  import SelectBlock from '../components/SelectBlock.vue'
-  import { mapGetters } from 'vuex'
+import SelectBlock from '../components/SelectBlock.vue'
+import { mapGetters } from 'vuex'
 
-  export default {
-    name: 'account',
-    components: {
-      SelectBlock
-    },
-    data() {
-      return {
-        currency: 'RUS',
-        currencyOptions: [
+export default {
+  name: 'account',
+  components: {
+    SelectBlock
+  },
+  data () {
+    return {
+      currency: 'RUS',
+      currencyOptions: [
         { value: 'EUR' },
         { value: 'RUS' },
         { value: 'USD' }
-        ],
-        time_zone: '(UTC+3:00) Европа/Москва',
-        language: 'Русский',
-        languageOptions: [
+      ],
+      time_zone: '(UTC+3:00) Европа/Москва',
+      language: 'Русский',
+      languageOptions: [
         {
           value: 'Русский'
         },
         {
           value: 'English'
         }
-        ]
-      }
-    },
-    computed: {
-      ...mapGetters(['color_schema'])
+      ]
     }
+  },
+  computed: {
+    ...mapGetters(['color_schema'])
   }
+}
 </script>
 <style>
 .social-icon > img {

@@ -6,7 +6,7 @@
 			</div>
 			<div class="middle-block" :class="color_schema.item">
 				<div class="link-galery" @click="list = true">
-					Галерея (15) 
+					Галерея (15)
 				</div>
 				<div class="link-galery-loaded" @click="list = false">
 					Загруженные (1)
@@ -38,7 +38,7 @@
 				<div class="list-modal-item" v-for="item in listItems">
 					<img :src="item.url" :alt="item.filename"  v-show="type == 'badge'">
 					<img class="sound-play" src="../../assets/play video.svg" v-show="type == 'sound'">
-				<!-- 	<button class="default-button player-button"  v-show="type == 'sound'"> 
+				<!-- 	<button class="default-button player-button"  v-show="type == 'sound'">
 						<div class="arrow-right"></div>
 					</button> -->
 					<div class="filename">{{item.filename}}</div>
@@ -50,68 +50,68 @@
 </template>
 
 <script>
-	import { mapGetters } from 'vuex';
-	import vue2Dropzone from 'vue2-dropzone'
-	import 'vue2-dropzone/dist/vue2Dropzone.min.css'
+import { mapGetters } from 'vuex'
+import vue2Dropzone from 'vue2-dropzone'
+import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 
-	export default {
-		name: 'load-file-modal',
-		props: ['type'],
-		components: {
-			vueDropzone: vue2Dropzone
-		},
-		data() {
-			return {
-				dropzoneImageOptions: {
-					url: 'https://httpbin.org/post',
-					thumbnailWidth: 150,
-					maxFilesize: 0.5,
-					headers: { "My-Awesome-Header": "header value" },
-					addRemoveLinks: true,
-					maxFiles: 1,
-				},
-				list: true,
-				imageItems: [
-				{ url: require('../../assets/dog.png'), filename: 'test.GIF', filesize: '842,50 Кб' },
-				{ url: require('../../assets/dog.png'), filename: 'test.GIF', filesize: '842,50 Кб' },
-				{ url: require('../../assets/dog.png'), filename: 'test.GIF', filesize: '842,50 Кб' },
-				{ url: require('../../assets/dog.png'), filename: 'test.GIF', filesize: '842,50 Кб' },
-				{ url: require('../../assets/dog.png'), filename: 'test.GIF', filesize: '842,50 Кб' },
-				{ url: require('../../assets/dog.png'), filename: 'test.GIF', filesize: '842,50 Кб' },
-				{ url: require('../../assets/dog.png'), filename: 'test.GIF', filesize: '842,50 Кб' },
-				{ url: require('../../assets/dog.png'), filename: 'test.GIF', filesize: '842,50 Кб' },
-				{ url: require('../../assets/dog.png'), filename: 'test.GIF', filesize: '842,50 Кб' },
-				{ url: require('../../assets/dog.png'), filename: 'test.GIF', filesize: '842,50 Кб' },
-				{ url: require('../../assets/dog.png'), filename: 'test.GIF', filesize: '842,50 Кб' },
-				],
-				soundItems: [
-				{  filename: 'message.mp3', filesize: '842,50 Кб' },
-				{  filename: 'message.mp3F', filesize: '842,50 Кб' },
-				{  filename: 'message.mp3', filesize: '842,50 Кб' },
-				{  filename: 'message.mp3', filesize: '842,50 Кб' },
-				{  filename: 'message.mp3F', filesize: '842,50 Кб' },
-				{  filename: 'message.mp3', filesize: '842,50 Кб' },
-				{  filename: 'message.mp3', filesize: '842,50 Кб' },
-				{  filename: 'message.mp3F', filesize: '842,50 Кб' },
-				{  filename: 'message.mp3', filesize: '842,50 Кб' },
-				{  filename: 'message.mp3F', filesize: '842,50 Кб' },
-				{ filename: 'message.mp3', filesize: '842,50 Кб' },
-				]
-			}
-		},
-		methods: {
-			hideModal() {
-				this.$refs.load_file_modal.hide()
-			}
-		},
-		computed: {
-			...mapGetters(['color_schema', 'user']),
-			listItems() {
-				var items = this.type == 'badge' ? this.imageItems : this.soundItems
-				return this.list ? items : [items[0]]
-			}
-		}
-	}
+export default {
+  name: 'load-file-modal',
+  props: ['type'],
+  components: {
+    vueDropzone: vue2Dropzone
+  },
+  data () {
+    return {
+      dropzoneImageOptions: {
+        url: 'https://httpbin.org/post',
+        thumbnailWidth: 150,
+        maxFilesize: 0.5,
+        headers: { 'My-Awesome-Header': 'header value' },
+        addRemoveLinks: true,
+        maxFiles: 1
+      },
+      list: true,
+      imageItems: [
+        { url: require('../../assets/dog.png'), filename: 'test.GIF', filesize: '842,50 Кб' },
+        { url: require('../../assets/dog.png'), filename: 'test.GIF', filesize: '842,50 Кб' },
+        { url: require('../../assets/dog.png'), filename: 'test.GIF', filesize: '842,50 Кб' },
+        { url: require('../../assets/dog.png'), filename: 'test.GIF', filesize: '842,50 Кб' },
+        { url: require('../../assets/dog.png'), filename: 'test.GIF', filesize: '842,50 Кб' },
+        { url: require('../../assets/dog.png'), filename: 'test.GIF', filesize: '842,50 Кб' },
+        { url: require('../../assets/dog.png'), filename: 'test.GIF', filesize: '842,50 Кб' },
+        { url: require('../../assets/dog.png'), filename: 'test.GIF', filesize: '842,50 Кб' },
+        { url: require('../../assets/dog.png'), filename: 'test.GIF', filesize: '842,50 Кб' },
+        { url: require('../../assets/dog.png'), filename: 'test.GIF', filesize: '842,50 Кб' },
+        { url: require('../../assets/dog.png'), filename: 'test.GIF', filesize: '842,50 Кб' }
+      ],
+      soundItems: [
+        { filename: 'message.mp3', filesize: '842,50 Кб' },
+        { filename: 'message.mp3F', filesize: '842,50 Кб' },
+        { filename: 'message.mp3', filesize: '842,50 Кб' },
+        { filename: 'message.mp3', filesize: '842,50 Кб' },
+        { filename: 'message.mp3F', filesize: '842,50 Кб' },
+        { filename: 'message.mp3', filesize: '842,50 Кб' },
+        { filename: 'message.mp3', filesize: '842,50 Кб' },
+        { filename: 'message.mp3F', filesize: '842,50 Кб' },
+        { filename: 'message.mp3', filesize: '842,50 Кб' },
+        { filename: 'message.mp3F', filesize: '842,50 Кб' },
+        { filename: 'message.mp3', filesize: '842,50 Кб' }
+      ]
+    }
+  },
+  methods: {
+    hideModal () {
+      this.$refs.load_file_modal.hide()
+    }
+  },
+  computed: {
+    ...mapGetters(['color_schema', 'user']),
+    listItems () {
+      var items = this.type == 'badge' ? this.imageItems : this.soundItems
+      return this.list ? items : [items[0]]
+    }
+  }
+}
 </script>
 
 <style>
@@ -130,7 +130,6 @@
 		max-width: 851px !important;
 	}
 }
-
 
 .load-file-modal-body {
 	display: grid;

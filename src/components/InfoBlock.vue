@@ -16,26 +16,26 @@
   </div>
 </template>
 <script>
-  import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 
-  export default {
-    name: 'info-block',
-    props: {
-      title: {
-        type: String
-      },
-      counter: {
-        type: String
-      },
-      amount: {
-        type: String,
-        default: null
-      }
+export default {
+  name: 'info-block',
+  props: {
+    title: {
+      type: String
     },
-    computed: {
-      ...mapGetters(['color_schema'])
+    counter: {
+      type: String
+    },
+    amount: {
+      type: String,
+      default: null
     }
+  },
+  computed: {
+    ...mapGetters(['color_schema'])
   }
+}
 </script>
 <style scoped>
 .info-block {

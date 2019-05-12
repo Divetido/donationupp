@@ -42,15 +42,15 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex'
 
-  export default {
-    name: 'preview-modal',
-    data() {
-      return {
-        elements: [
+export default {
+  name: 'preview-modal',
+  data () {
+    return {
+      elements: [
         {
-          id: "el-1",
+          id: 'el-1',
           x: 200,
           y: 200,
           scaleX: 1,
@@ -59,16 +59,16 @@
           height: 100,
           angle: 0,
           text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo consequat. Duis aute reprehenderit dolor in irure in voluptate velit cillum dolore pariatur.',
-          classPrefix: "tr",
+          classPrefix: 'tr',
           styles: {
-            background: "transparent",
+            background: 'transparent',
             fontSize: '10px',
             width: '100%',
             height: '100%'
           }
         },
         {
-          id: "el-2",
+          id: 'el-2',
           x: 200,
           y: 120,
           scaleX: 1,
@@ -77,47 +77,47 @@
           height: 20,
           angle: 0,
           text: '{{user}} перевел вам {{amount}}',
-          classPrefix: "tr",
+          classPrefix: 'tr',
           styles: {
-            background: "transparent",
+            background: 'transparent',
             fontSize: '14px',
             width: '100%',
             height: '100%'
           }
         }
-        ],
-        offsetX: 0,
-        offsetY: 0
-      }
-    },
-    methods: {
-      hideModal() {
-        this.$refs.preview_modal.hide()
-      },
-      update(id, payload) {
-        this.elements = this.elements.map(item => {
-          if (item.id === id) {
-            return {
-              ...item,
-              ...payload
-            };
-          }
-          return item;
-        });
-      },
-      getElementStyles(element) {
-        const styles = element.styles ? element.styles : {};
-        return {
-          width: `${element.width}px`,
-          height: `${element.height}px`,
-          ...styles
-        };
-      }
-    },
-    computed: {
-      ...mapGetters(['color_schema', 'user'])
+      ],
+      offsetX: 0,
+      offsetY: 0
     }
+  },
+  methods: {
+    hideModal () {
+      this.$refs.preview_modal.hide()
+    },
+    update (id, payload) {
+      this.elements = this.elements.map(item => {
+        if (item.id === id) {
+          return {
+            ...item,
+            ...payload
+          }
+        }
+        return item
+      })
+    },
+    getElementStyles (element) {
+      const styles = element.styles ? element.styles : {}
+      return {
+        width: `${element.width}px`,
+        height: `${element.height}px`,
+        ...styles
+      }
+    }
+  },
+  computed: {
+    ...mapGetters(['color_schema', 'user'])
   }
+}
 </script>
 
 <style>
@@ -137,7 +137,6 @@
   top: 0;
   left: 0;
 }
-
 
 .preview-modal-footer {
   position: absolute;
@@ -170,6 +169,6 @@ button.preview-save {
 
 </style>
 
-<style scoped> 
+<style scoped>
 
 </style>

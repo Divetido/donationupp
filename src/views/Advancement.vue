@@ -65,32 +65,32 @@
 </template>
 
 <script>
-	import { mapGetters } from 'vuex'
-	
-	export default {
-		name: 'advancement',
-		computed: {
-			...mapGetters(['color_schema']),
-			badges() {
-				var number_arr = Array.from({length: 9}, (v, k) => k+1); 
-				var arr = [];
-				number_arr.forEach(function(el) {
-					let filename = 'item' + el + '.png'
-					arr.push({"url": require('../assets/badges/' + filename), "filename": filename })
-				})
-				return arr
-			},
-			sounds() {
-				var number_arr = Array.from({length: 6}, (v, k) => k+1); 
-				var arr = [];
-				number_arr.forEach(function(el) {
-					let filename = 'message' + el + '.mp3'
-					arr.push({"url": '../assets/badges/' + filename, "filename": filename })
-				})
-				return arr
-			}
-		}
-	}
+import { mapGetters } from 'vuex'
+
+export default {
+  name: 'advancement',
+  computed: {
+    ...mapGetters(['color_schema']),
+    badges () {
+      var number_arr = Array.from({ length: 9 }, (v, k) => k + 1)
+      var arr = []
+      number_arr.forEach(function (el) {
+        let filename = 'item' + el + '.png'
+        arr.push({ 'url': require('../assets/badges/' + filename), 'filename': filename })
+      })
+      return arr
+    },
+    sounds () {
+      var number_arr = Array.from({ length: 6 }, (v, k) => k + 1)
+      var arr = []
+      number_arr.forEach(function (el) {
+        let filename = 'message' + el + '.mp3'
+        arr.push({ 'url': '../assets/badges/' + filename, 'filename': filename })
+      })
+      return arr
+    }
+  }
+}
 </script>
 
 <style scoped>
@@ -135,6 +135,5 @@
 	display: flex;
 	align-items: center;
 }
-
 
 </style>

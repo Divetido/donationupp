@@ -9,27 +9,27 @@
   </div>
 </template>
 <script>
-  import InfoBlock from '@/components/InfoBlock.vue'
-  import InfoRoundChart from '@/components/InfoRoundChart.vue'
-  import SubscribersList from '@/components/SubscribersList.vue'
+import InfoBlock from '@/components/InfoBlock.vue'
+import InfoRoundChart from '@/components/InfoRoundChart.vue'
+import SubscribersList from '@/components/SubscribersList.vue'
 
-  export default {
-    name: 'subscribers',
-    components: {
-      InfoBlock,
-      InfoRoundChart,
-      SubscribersList
-    },
-    data() {
-      return {
-        sections: [
-        { label: 'Простая', value: 25, color: '#D6D6EA'},
-        { label: 'Премиум', value: 20, color: '#8280FF'},
-        { label: 'Платная', value: 25, color: '#636393'},
-        ],
-      }
+export default {
+  name: 'subscribers',
+  components: {
+    InfoBlock,
+    InfoRoundChart,
+    SubscribersList
+  },
+  data () {
+    return {
+      sections: [
+        { label: 'Простая', value: 25, color: '#D6D6EA' },
+        { label: 'Премиум', value: 20, color: '#8280FF' },
+        { label: 'Платная', value: 25, color: '#636393' }
+      ]
     }
   }
+}
 </script>
 
 <style scoped>

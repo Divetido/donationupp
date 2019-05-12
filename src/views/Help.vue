@@ -6,7 +6,7 @@
 			</div>
 			<div class="support-input text">
 				<img src="../assets/search.svg" alt="search" class="search-icon">
-				<input type="text" name="support-question" placeholder="Введите свой вопрос…" :class="color_schema.title_text">	
+				<input type="text" name="support-question" placeholder="Введите свой вопрос…" :class="color_schema.title_text">
 			</div>
 			<div class="support-button">
 				<button class="default-button tex btn-search">
@@ -36,59 +36,59 @@
 </template>
 
 <script>
-	import { mapGetters } from 'vuex'
-	export default {
-		name: 'support',
-		data(){
-			return {
-				supportItem: [
-				{
-					question: 'УПРАВЛЕНИЕ АККАУНТОМ', 
-					answers: [
-					'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?',
-					'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?',
-					'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?'
-					],
-					active: false
-				},
-				{
-					question: 'УПРАВЛЕНИЕ АККАУНТОМ', 
-					answers: [
-					'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?',
-					'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?',
-					'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?'
-					],
-					active: false
-				},
-				{
-					question: 'УПРАВЛЕНИЕ АККАУНТОМ', 
-					answers: [
-					'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?',
-					'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?',
-					'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?'
-					],
-					active: false
-				},
-				{
-					question: 'УПРАВЛЕНИЕ АККАУНТОМ', 
-					answers: [
-					'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?',
-					'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?',
-					'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?'
-					],
-					active: false
-				},
+import { mapGetters } from 'vuex'
+export default {
+  name: 'support',
+  data () {
+    return {
+      supportItem: [
+        {
+          question: 'УПРАВЛЕНИЕ АККАУНТОМ',
+          answers: [
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?',
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?',
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?'
+          ],
+          active: false
+        },
+        {
+          question: 'УПРАВЛЕНИЕ АККАУНТОМ',
+          answers: [
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?',
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?',
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?'
+          ],
+          active: false
+        },
+        {
+          question: 'УПРАВЛЕНИЕ АККАУНТОМ',
+          answers: [
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?',
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?',
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?'
+          ],
+          active: false
+        },
+        {
+          question: 'УПРАВЛЕНИЕ АККАУНТОМ',
+          answers: [
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?',
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?',
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?'
+          ],
+          active: false
+        }
 
-				]
-			}
-		},
-		computed: {
-			...mapGetters(['color_schema'])
-		}
-	}
+      ]
+    }
+  },
+  computed: {
+    ...mapGetters(['color_schema'])
+  }
+}
 </script>
 
-<style scoped> 
+<style scoped>
 .supports {
 	display: grid;
 	grid-template-columns: 1fr;

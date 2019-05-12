@@ -2,7 +2,6 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import mixin from './mixin'
 import mock_data from './mock_data'
 import require_data from './require_data'
 

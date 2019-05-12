@@ -51,73 +51,73 @@
   </div>
 </template>
 <script>
-  import { mapGetters } from 'vuex'
-  import SelectBlock from '@/components/SelectBlock.vue'
+import { mapGetters } from 'vuex'
+import SelectBlock from '@/components/SelectBlock.vue'
 
-  export default {
-    name: 'table-block',
-    components: {
-      SelectBlock
-    },
-    data() {
-      return {
-        sortKey: 'date',
-        sortSettings: [
+export default {
+  name: 'table-block',
+  components: {
+    SelectBlock
+  },
+  data () {
+    return {
+      sortKey: 'date',
+      sortSettings: [
         { 'date': true },
         { 'amount': true }
-        ],
-        desc: true,
-        perPage: '5',
-        pageOptions: [
-        {value: '5'},
-        {value: '10'}
-        ],
-        items: null
-      }
+      ],
+      desc: true,
+      perPage: '5',
+      pageOptions: [
+        { value: '5' },
+        { value: '10' }
+      ],
+      items: null
+    }
+  },
+  props: {
+    title: {
+      type: String
+    }
+  },
+  computed: {
+    ...mapGetters(['color_schema', 'user', 'state_checkbox']),
+    text_color () {
+      return this.state_checkbox ? 'dark-blue' : 'grey'
     },
-    props: {
-      title: {
-        type: String
-      }
-    },
-    computed: {
-      ...mapGetters(['color_schema']),
-      text_color() {
-        return this.$state_checkbox ? 'dark-blue' : 'grey'
-      },
-      itemsLimit(){
-        this.$http.get('activity/').then((res) => {
-          this.items = res.body;
-        });
-        return items.splice(0, this.perPage)
-      },
-      orderItems(){
-        return this.items = _.orderBy(this.items, 'date' )
-      }
-    },
-    created () {
+    itemsLimit () {
       this.$http.get('activity/').then((res) => {
-        this.items = res.body;
-      });
+        this.items = res.body
+      })
+      return items.splice(0, this.perPage)
     },
-    methods: {
-      sortedItems(field) {
-        this.sortKey = field
-        this.sortSettings[field] = !this.sortSettings[field]
-        this.desc = this.sortSettings[field]
-        return _.orderBy(this.items, this.sortKey, this.desc ?  'desc' : 'asc')
-      },
-    },
-    filters: {
-      truncate: function (text, length, suffix) {
-        if (text.length > length) {
-          return text.substring(0, length) + suffix;
-        } else {
-          return text;
-        }
-      },
+    orderItems () {
+      return this.items = _.orderBy(this.items, 'date')
+    }
+  },
+  created () {
+    this.$http.get('activity/').then((res) => {
+      this.items = res.body
+    })
+  },
+  methods: {
+    sortedItems (field) {
+      this.sortKey = field
+      this.sortSettings[field] = !this.sortSettings[field]
+      this.desc = this.sortSettings[field]
+      return _.orderBy(this.items, this.sortKey, this.desc ? 'desc' : 'asc')
+    }
+  },
+  filters: {
+    truncate: function (text, length, suffix) {
+      if (text.length > length) {
+        return text.substring(0, length) + suffix
+      } else {
+        return text
+      }
     }
   }
+}
 </script>
 <style scoped>
 .custom-select {
@@ -168,7 +168,6 @@ tr.thead-item > th {
 .table th, .table td {
   border-bottom: 1px solid #515171;
 }
-
 
 img.avatar {
   width: 20px;

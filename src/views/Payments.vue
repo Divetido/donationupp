@@ -11,29 +11,28 @@
 </template>
 
 <script>
-  import InfoBlock from '@/components/InfoBlock.vue'
-  import InfoRoundChart from '@/components/InfoRoundChart.vue'
-  import ChartBlock from '@/components/ChartBlock.vue'
-  import TableBlock from '@/components/TableBlock.vue'
+import InfoBlock from '@/components/InfoBlock.vue'
+import InfoRoundChart from '@/components/InfoRoundChart.vue'
+import ChartBlock from '@/components/ChartBlock.vue'
+import TableBlock from '@/components/TableBlock.vue'
 
-  export default {
-    name: 'payments',
-    components: {
-      InfoBlock,
-      InfoRoundChart,
-      ChartBlock,
-      TableBlock
-    },
-    data() {
-      return {
-        sections: [
+export default {
+  name: 'payments',
+  components: {
+    InfoBlock,
+    InfoRoundChart,
+    ChartBlock,
+    TableBlock
+  },
+  data () {
+    return {
+      sections: [
         { label: 'Подписчики', value: 11, color: '#D6D6EA' }
-        ]
-      }
+      ]
     }
   }
+}
 </script>
-
 
 <style >
 .history-payments {
@@ -47,4 +46,3 @@
   position: relative;
 }
 </style>
-

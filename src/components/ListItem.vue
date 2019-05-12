@@ -34,42 +34,42 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 
-  export default {
-    name: 'list-item',
-    props: ['avatar_url', 'nickname', 'date', 'donate', 'state'],
-    data() {
-      return {
-        icon_path: {
-          "simple": require("../assets/simple.svg"),
-          "paid": {
-            dark: require("../assets/platn.svg"),
-            light: require("../assets/platn_dark.svg")},
-            "premium": require("../assets/prem-dark.svg")
-          },
-          text_state: {
-            "simple": "Простая подписка",
-            "paid": "Платная подписка",
-            "premium": "Премиум подписка"
-          }
-        }
+export default {
+  name: 'list-item',
+  props: ['avatar_url', 'nickname', 'date', 'donate', 'state'],
+  data () {
+    return {
+      icon_path: {
+        'simple': require('../assets/simple.svg'),
+        'paid': {
+          dark: require('../assets/platn.svg'),
+          light: require('../assets/platn_dark.svg') },
+        'premium': require('../assets/prem-dark.svg')
       },
-      computed: {
-        ...mapGetters(['color_schema']),
-        update_state(){
-          return this.text_state[this.state]
-        },
-        update_icon(){
-          if (this.state == 'paid') {
-            return (this.$state_checkbox) ? this.icon_path[this.state]['light'] : this.icon_path[this.state]['dark']
-          } else {
-            return this.icon_path[this.state]
-          }
-        }
+      text_state: {
+        'simple': 'Простая подписка',
+        'paid': 'Платная подписка',
+        'premium': 'Премиум подписка'
       }
     }
-  </script>
+  },
+  computed: {
+    ...mapGetters(['color_schema', 'user', 'state_checkbox']),
+    update_state () {
+      return this.text_state[this.state]
+    },
+    update_icon () {
+      if (this.state == 'paid') {
+        return (this.state_checkbox) ? this.icon_path[this.state]['light'] : this.icon_path[this.state]['dark']
+      } else {
+        return this.icon_path[this.state]
+      }
+    }
+  }
+}
+</script>
 
   <style scoped>
   .premium {

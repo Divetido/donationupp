@@ -21,7 +21,7 @@
 							</label>
 							<div class="alert-range-slider">
 								<div class="slider-value text">{{Math.min(...range_value) }} </div>
-								<b-form-slider ref="range" :min="0" :max="1000" v-model="range_value" /> 
+								<b-form-slider ref="range" :min="0" :max="1000" v-model="range_value" />
 								<div class="slider-value text">{{Math.max(...range_value) }}</div>
 							</div>
 						</div>
@@ -38,14 +38,13 @@
 
 				</div>
 
-
 				<div class="alert-form-content">
 					<div v-if="activetab === 1" class="tabcontent" :class="color_schema.item">
 						<div class="form-group">
 							<input type="text" name="alert-title" v-model="alert_title" class="alert-input">
 						</div>
 						<div class="preview-title" :class="[color_schema.global, color_schema.text]" :style="{color: alert_title_color, fontSize: alert_title_font_size + 'px'}" v-html="previewTitle">
-							
+
 						</div>
 						<div class="form-format-text">
 							<div class="form-block2">
@@ -75,7 +74,7 @@
 									</div>
 
 									<div>
-										
+
 									</div>
 								</div>
 							</div>
@@ -95,9 +94,9 @@
 							</div>
 							<div class="form-block1 input-title-style" :class="color_schema.text">
 								<div class="form-group">
-									Жирный 
+									Жирный
 									<label class="switch-checkbox" for="bold-style">
-										
+
 										<input type="checkbox" id="bold-style" v-model="title_style.bold">
 										<span class="alert-slider-checkbox round"></span>
 									</label>
@@ -105,7 +104,7 @@
 								<div class="form-group">
 									Курсив
 									<label class="switch-checkbox" for="cursive-style">
-										
+
 										<input type="checkbox" id="cursive-style" v-model="title_style.italic">
 										<span class="alert-slider-checkbox round"></span>
 									</label>
@@ -117,7 +116,7 @@
 					</div>
 					<div v-if="activetab === 2" class="tabcontent" :class="color_schema.item">
 						<div class="preview-message" :class="[color_schema.global, color_schema.text]" :style="{color: alert_message_color, fontSize: alert_message_font_size + 'px'}" v-html="alert_message">
-							
+
 						</div>
 						<div class="form-format-text">
 							<div class="form-block2">
@@ -147,7 +146,7 @@
 									</div>
 
 									<div>
-										
+
 									</div>
 								</div>
 							</div>
@@ -167,9 +166,9 @@
 							</div>
 							<div class="form-block1 input-title-style" :class="color_schema.text">
 								<div class="form-group">
-									Жирный 
+									Жирный
 									<label class="switch-checkbox" for="bold-style">
-										
+
 										<input type="checkbox" id="bold-style" v-model="message_style.bold">
 										<span class="alert-slider-checkbox round"></span>
 									</label>
@@ -177,7 +176,7 @@
 								<div class="form-group">
 									Курсив
 									<label class="switch-checkbox" for="cursive-style">
-										
+
 										<input type="checkbox" id="cursive-style" v-model="message_style.italic">
 										<span class="alert-slider-checkbox round"></span>
 									</label>
@@ -194,7 +193,7 @@
 									<img src="../assets/upload-cloud.svg" alt="Upload Cloud" class="upload-img">
 									<div class="text" :class="color_schema.extra">Drag & Drop file here</div>
 								</div>
-								
+
 								<div class="subtitle">JPG, PNG, GIF, WEBM, AVI, MPEG</div>
 							</div>
 
@@ -226,7 +225,7 @@
 								Продолжительность
 							</label>
 							<div class="alert-sound-slider">
-								<b-form-slider  :min="0" :max="100" v-model="durationSound"/> 
+								<b-form-slider  :min="0" :max="100" v-model="durationSound"/>
 								<div class="slider-value text">{{ durationSound }}</div>
 								<span>sec</span>
 							</div>
@@ -237,7 +236,7 @@
 								Громкость
 							</label>
 							<div class="alert-sound-slider">
-								<b-form-slider  :min="0" :max="100"  v-model="volumeSound"/> 
+								<b-form-slider  :min="0" :max="100"  v-model="volumeSound"/>
 								<div class="slider-value text">{{ volumeSound }}</div>
 								<span>%</span>
 							</div>
@@ -305,7 +304,7 @@
 						<button style="border: 0" class="edit-link btn-action" />
 						<button style="border: 0" class="delete-link btn-action" />
 					</div>
-				</div>	
+				</div>
 			</div>
 		</div>
 		<div class="subscribe-alert">
@@ -356,112 +355,111 @@
 </template>
 
 <script>
-	import { mapGetters } from 'vuex'
-	import SelectBlock from '@/components/SelectBlock.vue'
-	import ColorPicker from '@/components/widget-component/ColorPicker.vue';
-	import bFormSlider from 'vue-bootstrap-slider/es/form-slider';
-	import PreviewModal from '@/components/modals/PreviewModal.vue'
-	import vue2Dropzone from 'vue2-dropzone'
-	import 'vue2-dropzone/dist/vue2Dropzone.min.css'
+import { mapGetters } from 'vuex'
+import SelectBlock from '@/components/SelectBlock.vue'
+import ColorPicker from '@/components/widget-component/ColorPicker.vue'
+import bFormSlider from 'vue-bootstrap-slider/es/form-slider'
+import PreviewModal from '@/components/modals/PreviewModal.vue'
+import vue2Dropzone from 'vue2-dropzone'
+import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 
-	export default {
-		name: 'alerts',
-		components: {
-			SelectBlock,
-			ColorPicker,
-			bFormSlider,
-			PreviewModal,
-			vueDropzone: vue2Dropzone
-		},
-		data() {
-			return {
-				alert_image: '',
-				durationSound: 15,
-				volumeSound: 50,
-				dropzoneImageOptions: {
-					url: 'https://httpbin.org/post',
-					thumbnailWidth: 150,
-					maxFilesize: 0.5,
-					headers: { "My-Awesome-Header": "header value" },
-					addRemoveLinks: true,
-					maxFiles: 1,
-				},
-				dropzoneSoundOptions: {
-					url: 'https://httpbin.org/post',
-					thumbnailWidth: 150,
-					maxFilesize: 10,
-					headers: { "My-Awesome-Header": "header value" },
-					addRemoveLinks: true,
-					maxFiles: 1,
-				},
-				alert_message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo consequat. Duis aute reprehenderit dolor in irure in voluptate velit cillum dolore pariatur.',
-				title_align: 'center',
-				message_align: 'center',
-				title_style: { bold: true, italic: false },
-				message_style: { bold: true, italic: false },
-				alert_title_font_size: 12,
-				alert_message_font_size: 12,
-				alert_title_color: '#A1A1C3',
-				alert_message_color: '#A1A1C3',
-				alert_title_font: 'Montserrat',
-				alert_message_font: 'Montserrat',
-				range_value: [100, 500],
-				activetab: 1,
-				actions: false,
-				alert_title: '{{user}} перевел вам {{amount}}',
-				alertItems: [
-				{ active: true, amount: { min: '0 EUR', max: '100 EUR' }  },
-				{ active: true, amount: { min: '100 EUR', max: '300 EUR' }  },
-				{ active: true, amount: { min: '300 EUR', max: '500 EUR' }  }
-				],
-				subscribeItems: [
-				{ active: true, strick: '1 месяц', icon: require('../assets/simple-icon.svg'), type: 'Простая подписка' },
-				{ active: true, strick: '2 месяца', icon: require('../assets/premium.svg'), type: 'Премиум подписка' }
-				],
-				showImageDropzone: true,
-				showSoundDropzone: true
-			}
-		},
-		computed: {
-			...mapGetters(['color_schema']),
-			previewTitle() {
-				return this.alert_title.replace(/{{user}}|{{amount}}/gi, function(value) { return( "<span style='color: white' >" + value + "</span>" ) } )
-			},
-			titleStyleoptions() {
-				return {
-					color: this.alert_title_color,
-					textAlign: this.title_align,
-					fontSize: this.alert_title_font_size + 'px',
-					fontFamily: this.alert_title_font,
-					fontStyle: this.title_style
-				}
-			},
-			messageStyleoptions() {
-				return {
-					color: this.alert_message_color,
-					textAlign: this.message_align,
-					fontSize: this.alert_message_font_size + 'px',
-					fontFamily: this.alert_message_font,
-					fontStyle: this.message_style
-				}
-			},
-			AlertImage() {
-				return this.alert_image == '' ? require('../assets/Image 23.png') : this.alert_image
-			}
-		},
-		methods: {
-			hideImageDropzone() {
-				this.showImageDropzone = false
-			},
-			hideSoundDropzone() {
-				this.showSoundDropzone = false
-			}
-		}
-	}
+export default {
+  name: 'alerts',
+  components: {
+    SelectBlock,
+    ColorPicker,
+    bFormSlider,
+    PreviewModal,
+    vueDropzone: vue2Dropzone
+  },
+  data () {
+    return {
+      alert_image: '',
+      durationSound: 15,
+      volumeSound: 50,
+      dropzoneImageOptions: {
+        url: 'https://httpbin.org/post',
+        thumbnailWidth: 150,
+        maxFilesize: 0.5,
+        headers: { 'My-Awesome-Header': 'header value' },
+        addRemoveLinks: true,
+        maxFiles: 1
+      },
+      dropzoneSoundOptions: {
+        url: 'https://httpbin.org/post',
+        thumbnailWidth: 150,
+        maxFilesize: 10,
+        headers: { 'My-Awesome-Header': 'header value' },
+        addRemoveLinks: true,
+        maxFiles: 1
+      },
+      alert_message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo consequat. Duis aute reprehenderit dolor in irure in voluptate velit cillum dolore pariatur.',
+      title_align: 'center',
+      message_align: 'center',
+      title_style: { bold: true, italic: false },
+      message_style: { bold: true, italic: false },
+      alert_title_font_size: 12,
+      alert_message_font_size: 12,
+      alert_title_color: '#A1A1C3',
+      alert_message_color: '#A1A1C3',
+      alert_title_font: 'Montserrat',
+      alert_message_font: 'Montserrat',
+      range_value: [100, 500],
+      activetab: 1,
+      actions: false,
+      alert_title: '{{user}} перевел вам {{amount}}',
+      alertItems: [
+        { active: true, amount: { min: '0 EUR', max: '100 EUR' } },
+        { active: true, amount: { min: '100 EUR', max: '300 EUR' } },
+        { active: true, amount: { min: '300 EUR', max: '500 EUR' } }
+      ],
+      subscribeItems: [
+        { active: true, strick: '1 месяц', icon: require('../assets/simple-icon.svg'), type: 'Простая подписка' },
+        { active: true, strick: '2 месяца', icon: require('../assets/premium.svg'), type: 'Премиум подписка' }
+      ],
+      showImageDropzone: true,
+      showSoundDropzone: true
+    }
+  },
+  computed: {
+    ...mapGetters(['color_schema']),
+    previewTitle () {
+      return this.alert_title.replace(/{{user}}|{{amount}}/gi, function (value) { return ("<span style='color: white' >" + value + '</span>') })
+    },
+    titleStyleoptions () {
+      return {
+        color: this.alert_title_color,
+        textAlign: this.title_align,
+        fontSize: this.alert_title_font_size + 'px',
+        fontFamily: this.alert_title_font,
+        fontStyle: this.title_style
+      }
+    },
+    messageStyleoptions () {
+      return {
+        color: this.alert_message_color,
+        textAlign: this.message_align,
+        fontSize: this.alert_message_font_size + 'px',
+        fontFamily: this.alert_message_font,
+        fontStyle: this.message_style
+      }
+    },
+    AlertImage () {
+      return this.alert_image == '' ? require('../assets/Image 23.png') : this.alert_image
+    }
+  },
+  methods: {
+    hideImageDropzone () {
+      this.showImageDropzone = false
+    },
+    hideSoundDropzone () {
+      this.showSoundDropzone = false
+    }
+  }
+}
 </script>
 
-
-<style> 
+<style>
 
 .switch-checkbox {
 	position: relative;
@@ -547,7 +545,6 @@ input:checked + .alert-slider-checkbox {
   	height: 20px;
   	width: 20px;
   }
-
 
   .alert-link{
   	background: url(../assets/play-button.svg) no-repeat center;
@@ -898,10 +895,9 @@ input:checked + .alert-slider-checkbox {
   	grid-column-gap: 20px;
   }
 
-
 </style>
 
-<style> 
+<style>
 
 .custom-alert-image {
 	display: flex;

@@ -33,7 +33,7 @@
 					</div>
 					<div class="subscribers">
 						<div class="text" >
-							<span :class="color_schema.text">Подписчиков </span> 
+							<span :class="color_schema.text">Подписчиков </span>
 							3 тыс.
 						</div>
 					</div>

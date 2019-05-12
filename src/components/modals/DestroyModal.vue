@@ -19,20 +19,20 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex'
 
-  export default {
-    name: 'destroy-modal',
-    props: ['title'],
-    methods: {
-      hideModal() {
-        this.$refs.destroy_modal.hide()
-      }
-    },
-    computed: {
-      ...mapGetters(['color_schema', 'user'])
+export default {
+  name: 'destroy-modal',
+  props: ['title'],
+  methods: {
+    hideModal () {
+      this.$refs.destroy_modal.hide()
     }
+  },
+  computed: {
+    ...mapGetters(['color_schema', 'user'])
   }
+}
 </script>
 
 <style>

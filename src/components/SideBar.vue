@@ -71,7 +71,6 @@
         </router-link>
       </b-collapse>
 
-
       <li class="list-group-item">
         <router-link to="/help" class="text menu-link" :class="color_schema.link">
           <img src="../assets/help.svg" class="menu-icon">
@@ -96,24 +95,24 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 
-  export default {
-    name: 'side-bar',
-    mounted() {
-      if (this.$route.path.includes('/settings')) {
-        this.$root.$emit('bv::toggle::collapse', 'settings').show
-      }
-    },
-    computed: {
-      ...mapGetters(['color_schema', 'user']),
-      activeLink() {
-        return {
-          'router-link-active': this.$route.path.includes('/settings') ? true : false
-        }
+export default {
+  name: 'side-bar',
+  mounted () {
+    if (this.$route.path.includes('/settings')) {
+      this.$root.$emit('bv::toggle::collapse', 'settings').show
+    }
+  },
+  computed: {
+    ...mapGetters(['color_schema', 'user']),
+    activeLink () {
+      return {
+        'router-link-active': !!this.$route.path.includes('/settings')
       }
     }
   }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -194,7 +193,6 @@ span.drop {
   width: 100%;
   height: 100%;
 }
-
 
 @media (max-width: 990px) {
   a.menu-link {

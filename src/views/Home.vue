@@ -171,23 +171,23 @@
 </template>
 
 <script>
- import LoginModal from '@/components/modals/LoginModal.vue'
+import LoginModal from '@/components/modals/LoginModal.vue'
 
- export default {
+export default {
   name: 'home',
   components: {
     LoginModal
   },
-  data(){
+  data () {
     return {
       comments: null
     }
   },
   created () {
     this.$http.get('comments/').then((res) => {
-      this.comments = res.body;
-    });
-  },
+      this.comments = res.body
+    })
+  }
 }
 
 </script>
@@ -229,7 +229,6 @@ dl, ol, ul {
   margin-top: 0;
   margin-bottom: 0;
 }
-
 
 /* Header */
 
@@ -307,9 +306,6 @@ button.btn.sign-in:hover {
   line-height: 19px;
   box-shadow: #06033380 0px 3px 50px;
 }
-
-
-
 
 /* Content */
 

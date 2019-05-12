@@ -13,10 +13,10 @@
 </div>
 </template>
 <script>
-  export default {
-    name: 'select-block',
-    props: ['id', 'value', 'options']
-  }
+export default {
+  name: 'select-block',
+  props: ['id', 'value', 'options']
+}
 </script>
 <style>
 .dropdown-toggle {

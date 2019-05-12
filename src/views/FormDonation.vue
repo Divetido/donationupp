@@ -97,7 +97,7 @@
 						Для получения награды отправьте этому стримеру еще
 						<span :class="color_schema.title_text">300 EUR</span>
 						<br>
-						Ваш текущий донат: 
+						Ваш текущий донат:
 						<span>200 EUR</span>
 					</div>
 
@@ -136,45 +136,45 @@
 </template>
 
 <script>
-	import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 
-	export default {
-		name: 'form-donation',
-		data() {
-			return {
-				config_background: 'default',
-				image: require('../assets/Background@2x.png'),
-				currency: 'RUS',
-				anonim: false,
-				currencyOptions: [
-				{ value: 'EUR' },
-				{ value: 'RUS' },
-				{ value: 'USD' }
-				],
-			}
-		},
-		computed: {
-			...mapGetters(['color_schema']),
-			background() {
-				if (this.config_background == 'image'){
-					return this.image
-				} else if (this.config_background == 'color'){
-					return '#6C55D9'
-				}else {
-					return 'linear-gradient(to right, #6B35A4, #3D59A7) 90%'
-				}
-			},
-			sounds() {
-				var number_arr = Array.from({length: 2}, (v, k) => k+1); 
-				var arr = [];
-				number_arr.forEach(function(el) {
-					let filename = 'message' + el + '.mp3'
-					arr.push({"url": '../assets/badges/' + filename, "filename": filename })
-				})
-				return arr
-			}
-		}
-	}
+export default {
+  name: 'form-donation',
+  data () {
+    return {
+      config_background: 'default',
+      image: require('../assets/Background@2x.png'),
+      currency: 'RUS',
+      anonim: false,
+      currencyOptions: [
+        { value: 'EUR' },
+        { value: 'RUS' },
+        { value: 'USD' }
+      ]
+    }
+  },
+  computed: {
+    ...mapGetters(['color_schema']),
+    background () {
+      if (this.config_background == 'image') {
+        return this.image
+      } else if (this.config_background == 'color') {
+        return '#6C55D9'
+      } else {
+        return 'linear-gradient(to right, #6B35A4, #3D59A7) 90%'
+      }
+    },
+    sounds () {
+      var number_arr = Array.from({ length: 2 }, (v, k) => k + 1)
+      var arr = []
+      number_arr.forEach(function (el) {
+        let filename = 'message' + el + '.mp3'
+        arr.push({ 'url': '../assets/badges/' + filename, 'filename': filename })
+      })
+      return arr
+    }
+  }
+}
 </script>
 
 <style>
@@ -413,7 +413,6 @@ img.avatar {
 		height: 45px;
 	}
 
-
 	.checkbox-form-donation {
 		position: relative;
 		padding: 0 25px;
@@ -434,7 +433,7 @@ img.avatar {
 		border-radius: 3px;
 	}
 
-	input.checkbox-anonim:hover ~ .custom-checkbox, 
+	input.checkbox-anonim:hover ~ .custom-checkbox,
 	input.checkbox-anonim:checked ~ .custom-checkbox {
 		background: url(../assets/check-radio.svg) no-repeat center, white;
 	}

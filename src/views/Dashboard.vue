@@ -5,7 +5,7 @@
         <info-block title="Платежей" counter="199" amount="2150"/>
         <info-block title="Подписчиков" counter="325"/>
       </div>
-      
+
       <info-round-chart title="Сбор средств" :amount="800" :sections="sections" :total="40"/>
       <chart-block />
       <div class="history-activity text" :class="color_schema.item">
@@ -78,43 +78,42 @@
 </template>
 
 <script>
-  import InfoBlock from '@/components/InfoBlock.vue'
-  import InfoRoundChart from '@/components/InfoRoundChart.vue'
-  import ChartBlock from '@/components/ChartBlock.vue'
-  import TableBlock from '@/components/TableBlock.vue'
-  import SubscribersList from '@/components/SubscribersList.vue'
-  import Activity from '@/components/Activity.vue'
-  import { mapGetters } from 'vuex'
+import InfoBlock from '@/components/InfoBlock.vue'
+import InfoRoundChart from '@/components/InfoRoundChart.vue'
+import ChartBlock from '@/components/ChartBlock.vue'
+import TableBlock from '@/components/TableBlock.vue'
+import SubscribersList from '@/components/SubscribersList.vue'
+import Activity from '@/components/Activity.vue'
+import { mapGetters } from 'vuex'
 
-  export default {
-    name: 'dashboard',
-    components: {
-      InfoBlock,
-      InfoRoundChart,
-      TableBlock,
-      ChartBlock,
-      SubscribersList,
-      Activity
-    },
-    data() {
-      return {
-        items: null,
-        sections: [
-        { label: 'amount', value: 16, color: '#8280FF'},
-        ],
-      }
-    },
-    created () {
-      this.$http.get('activity/').then((res) => {
-        this.items = res.body;
-      });
-    },
-    computed: {
-      ...mapGetters(['color_schema', 'user'])
-    },
+export default {
+  name: 'dashboard',
+  components: {
+    InfoBlock,
+    InfoRoundChart,
+    TableBlock,
+    ChartBlock,
+    SubscribersList,
+    Activity
+  },
+  data () {
+    return {
+      items: null,
+      sections: [
+        { label: 'amount', value: 16, color: '#8280FF' }
+      ]
+    }
+  },
+  created () {
+    this.$http.get('activity/').then((res) => {
+      this.items = res.body
+    })
+  },
+  computed: {
+    ...mapGetters(['color_schema', 'user'])
   }
+}
 </script>
-
 
 <style scoped>
 .history-payments, .chart {
@@ -233,7 +232,7 @@ img.avatar {
 
 </style>
 
-<style> 
+<style>
 .info-blocks {
   width: 100%;
   height: 100%;

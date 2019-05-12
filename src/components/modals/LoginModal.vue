@@ -29,28 +29,28 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex'
 
-  export default {
-    name: 'login-modal',
-    compenents: {
-    },
+export default {
+  name: 'login-modal',
+  compenents: {
+  },
 
-    methods: {
-      hideModal() {
-        this.$refs.login_modal.hide()
-      },
-      updateUserType(value) {
-        this.$store.commit('set_user_type', value)
-      }
+  methods: {
+    hideModal () {
+      this.$refs.login_modal.hide()
     },
-    computed: {
-      ...mapGetters(['color_schema', 'user']),
-      item_value(){
-        return this.items[0].value
-      }
+    updateUserType (value) {
+      this.$store.commit('set_user_type', value)
+    }
+  },
+  computed: {
+    ...mapGetters(['color_schema', 'user']),
+    item_value () {
+      return this.items[0].value
     }
   }
+}
 </script>
 
 <style>

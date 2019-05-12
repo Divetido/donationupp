@@ -30,7 +30,7 @@
 				<div class="stream-link">
 					<div class="text">
 						Смотреть все
-					</div> 
+					</div>
 					<img src="../assets/right-arrow.svg" alt="arrow" class="arrow-icon">
 				</div>
 			</div>
@@ -105,28 +105,28 @@
 </template>
 
 <script>
-	import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 
-	export default {
-		name: 'profile',
-		data() {
-			return {
-				rewardItems: [
-				{ amount: 250, badge_count: 2, animation_count: 2, sound_count: 2 },
-				{ amount: 500, badge_count: 5, animation_count: 5, sound_count: 5 },
-				{ amount: 1200, badge_count: 10, animation_count: 10, sound_count: 10 },
-				{ amount: 1200, badge_count: 10, animation_count: 10, sound_count: 10 },
-				{ amount: 1200, badge_count: 10, animation_count: 10, sound_count: 10 },
-				]
-			}
-		},
-		computed: {
-			...mapGetters(['color_schema', 'user'])
-		}
-	}
+export default {
+  name: 'profile',
+  data () {
+    return {
+      rewardItems: [
+        { amount: 250, badge_count: 2, animation_count: 2, sound_count: 2 },
+        { amount: 500, badge_count: 5, animation_count: 5, sound_count: 5 },
+        { amount: 1200, badge_count: 10, animation_count: 10, sound_count: 10 },
+        { amount: 1200, badge_count: 10, animation_count: 10, sound_count: 10 },
+        { amount: 1200, badge_count: 10, animation_count: 10, sound_count: 10 }
+      ]
+    }
+  },
+  computed: {
+    ...mapGetters(['color_schema', 'user'])
+  }
+}
 </script>
 
-<style scoped> 
+<style scoped>
 .arrow-icon {
 	width: 21px;
 	height: 15px;
