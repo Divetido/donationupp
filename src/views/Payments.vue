@@ -6,7 +6,7 @@
     </div>
     <info-round-chart title="Процент Доната" :sections="sections" :total="35" />
     <chart-block />
-    <table-block class="history-payments" title="История платежей" />
+    <table-block class="history-payments" title="История платежей" type="payment" />
   </div>
 </template>
 

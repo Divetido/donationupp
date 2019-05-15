@@ -238,7 +238,7 @@
 </div>
 
 <div class="widgets-list">
-  <template v-for="(item,index) in items">
+  <template v-for="(item,index) in widgets">
 
     <div class="widget-item" :class="color_schema.item"   >
       <div class="item-title" v-b-toggle="'collapse-' + index " aria-expanded="false" @click="item.active = !item.active">
@@ -297,7 +297,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import SelectBlock from '@/components/SelectBlock.vue'
 import ColorPicker from '@/components/widget-component/ColorPicker.vue'
 import vue2Dropzone from 'vue2-dropzone'
@@ -343,7 +343,6 @@ export default {
         { value: 'Количество подписчиков за период', message: 'Количество подписчиков за период: {{count}} {{type}} {{period}}' },
         { value: 'Сбор средств', message: 'Сбор средств - 1' }
       ],
-      items: null,
       item_form: {
         widget_type: { value: 'Последнее сообщение', message: 'Последнее сообщение: {{message}}' },
         widget_list_count: 20,
@@ -365,13 +364,12 @@ export default {
       }
     }
   },
-  created () {
-    this.$http.get('widgets/').then((res) => {
-      this.items = res.body
-    })
+  mounted() {
+    this.$store.dispatch('fetchWidgets')
   },
   computed: {
     ...mapGetters(['color_schema']),
+    ...mapState(['widgets']),
     replaceWidgetMessage () {
       return this.widget_message.replace(/({{message}})/, '<p> [текст сообщения]</p>')
     },

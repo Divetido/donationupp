@@ -68,8 +68,9 @@
 </b-collapse>
 </div>
 <div class="milestone-list">
-  <template v-for="milestone in list_milestone">
+  <template v-for="milestone in milestones">
     <milestone-box
+    :key="milestone.id"
     :money="milestone.money"
     :badge_count="milestone.badge_count"
     :animation_count="milestone.animation_count"
@@ -82,43 +83,38 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import ModalBlock from '@/components/ModalBlock.vue'
-import MilestoneBox from '@/components/MilestoneBox.vue'
-import SelectBlock from '@/components/SelectBlock.vue'
+  import { mapGetters, mapState } from 'vuex'
+  import ModalBlock from '@/components/ModalBlock.vue'
+  import MilestoneBox from '@/components/MilestoneBox.vue'
 
-export default {
-  name: 'milestone',
-  components: {
-    MilestoneBox,
-    ModalBlock,
-    SelectBlock
-  },
-  data () {
-    return {
-      type: 'badge',
-      animation: { value: 'Стандартно', class_name: 'static' },
-      animation_options: [
+  export default {
+    name: 'milestone',
+    components: {
+      MilestoneBox,
+      ModalBlock
+    },
+    data () {
+      return {
+        type: 'badge',
+        animation: { value: 'Стандартно', class_name: 'static' },
+        animation_options: [
         { value: 'Стандартно', class_name: 'static' },
         { value: 'Слайдер', class_name: 'widget-slider' },
         { value: 'Список', class_name: 'widget-list' },
         { value: 'Бегущая строка', class_name: 'crawl-line' }
-      ],
-      amount: 3000,
-      actions: false,
-      list_milestone: [
-        { money: 100, badge_count: 1, animation_count: 1, sound_count: 1 },
-        { money: 250, badge_count: 3, animation_count: 3, sound_count: 3 },
-        { money: 500, badge_count: 5, animation_count: 5, sound_count: 5 },
-        { money: 1000, badge_count: 10, animation_count: 10, sound_count: 10 },
-        { money: 2000, badge_count: 25, animation_count: 25, sound_count: 25 }
-      ]
+        ],
+        amount: 3000,
+        actions: false
+      }
+    },
+    mounted() {
+      this.$store.dispatch('fetchMilestones')
+    },
+    computed: {
+      ...mapGetters(['color_schema']),
+      ...mapState(['milestones'])
     }
-  },
-  computed: {
-    ...mapGetters(['color_schema'])
   }
-}
 </script>
 
 <style >

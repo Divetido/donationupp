@@ -24,7 +24,7 @@
       </div>
     </div>
   </div>
-  <div class="list-body" id="list-body">
+  <div class="list-body" id="list-body-subscriptions">
     <list-item
     :avatar_url="subscribe.user.avatar"
     :nickname="subscribe.user.nickname"
@@ -56,9 +56,8 @@
         ]
       }
     },
-    mounted(){
-      console.log('route', this.route)
-      const listElm = document.querySelector('#list-body');
+    mounted() {
+      const listElm = document.querySelector('#list-body-subscriptions');
       listElm.addEventListener('scroll', e => {
         if(listElm.scrollTop + listElm.clientHeight >= listElm.scrollHeight) {
           this.loadMore();
@@ -67,7 +66,6 @@
       this.$store.dispatch('fetchSubscribers')
     },
     methods: {
-      ...mapActions(['updateSubscribers']),
       sortable (value) {
         if (value == 'donate') {
           return _.orderBy(this.subscribers, value).reverse()

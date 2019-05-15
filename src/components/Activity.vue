@@ -1,6 +1,6 @@
 <template>
 	<div class="list-activity">
-		<div class="item-activity" v-for="(item, index) in activityItems">
+		<div class="item-activity" v-for="(item, index) in activities">
 			<div class="title-item" :class="color_schema.text">
 				{{item.title}}
 			</div>
@@ -32,49 +32,61 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+	import { mapGetters, mapState } from 'vuex'
 
-export default {
-  name: 'activity',
-  data () {
-    return {
-      activityItems: null,
-      icon_path: {
-        'simple': require('../assets/simple.svg'),
-        'paid': {
-          dark: require('../assets/platn.svg'),
-          light: require('../assets/platn_dark.svg') },
-        'premium': require('../assets/prem-dark.svg')
-      }
-    }
-  },
-  props: ['route'],
-  computed: {
-    ...mapGetters(['color_schema', 'user', 'state_checkbox'])
-  },
-  created () {
-    this.$http.get(this.route).then((res) => {
-      this.activityItems = res.body
-    })
-  },
-  methods: {
-    state_message (value) {
-      if (value != '') {
-        return require('../assets/active message.svg')
-      } else {
-        return require('../assets/message.svg')
-      }
-    },
-    update_icon (value) {
-      if (value == 'paid') {
-        return (this.state_checkbox) ? this.icon_path[value]['light'] : this.icon_path[value]['dark']
-      } else {
-        return this.icon_path[value]
-      }
-    }
-  }
-}
-</script>
+	export default {
+		name: 'activity',
+		data () {
+			return {
+				icon_path: {
+					'simple': require('../assets/simple.svg'),
+					'paid': {
+						dark: require('../assets/platn.svg'),
+						light: require('../assets/platn_dark.svg') },
+						'premium': require('../assets/prem-dark.svg')
+					},
+					busy: false
+				}
+			},
+			props: ['type'],
+			computed: {
+				...mapGetters(['color_schema', 'user', 'state_checkbox']),
+				...mapState(['activities'])
+			},
+			mounted() {
+				const listElm = document.querySelector('.activity-block');
+				listElm.addEventListener('scroll', e => {
+					if(listElm.scrollTop + listElm.clientHeight >= listElm.scrollHeight) {
+						this.loadMore();
+					}
+				});
+				this.$store.dispatch('fetchActivities', this.type)
+			},
+			methods: {
+				state_message (value) {
+					if (value != '') {
+						return require('../assets/active message.svg')
+					} else {
+						return require('../assets/message.svg')
+					}
+				},
+				update_icon (value) {
+					if (value == 'paid') {
+						return (this.state_checkbox) ? this.icon_path[value]['light'] : this.icon_path[value]['dark']
+					} else {
+						return this.icon_path[value]
+					}
+				},
+				loadMore() {
+					this.busy = true;
+					setTimeout(() => {
+						this.$store.dispatch('updateActivities', this.type);
+						this.busy = false;
+					}, 200);
+				}
+			}
+		}
+	</script>
 
 	<style scoped>
 	.user-info-activity {

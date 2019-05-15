@@ -13,11 +13,10 @@
           <div class="title-activity">
             Последние операции
           </div>
-          <activity route="activity-streamer/"/>
+          <activity type="streamer"/>
         </div>
 
       </div>
-      <!-- <table-block class="history-activity" :items="items" title="Последние операции" /> -->
     </template>
     <template v-else>
       <div class="profile-block">
@@ -69,7 +68,7 @@
           <div class="title-activity">
             Последние операции
           </div>
-          <activity route="activity-user/"/>
+          <activity type="user"/>
         </div>
 
       </div>
@@ -78,41 +77,35 @@
 </template>
 
 <script>
-import InfoBlock from '@/components/InfoBlock.vue'
-import InfoRoundChart from '@/components/InfoRoundChart.vue'
-import ChartBlock from '@/components/ChartBlock.vue'
-import TableBlock from '@/components/TableBlock.vue'
-import SubscribersList from '@/components/SubscribersList.vue'
-import Activity from '@/components/Activity.vue'
-import { mapGetters } from 'vuex'
+  import InfoBlock from '@/components/InfoBlock.vue'
+  import InfoRoundChart from '@/components/InfoRoundChart.vue'
+  import ChartBlock from '@/components/ChartBlock.vue'
+  import TableBlock from '@/components/TableBlock.vue'
+  import SubscribersList from '@/components/SubscribersList.vue'
+  import Activity from '@/components/Activity.vue'
+  import { mapGetters } from 'vuex'
 
-export default {
-  name: 'dashboard',
-  components: {
-    InfoBlock,
-    InfoRoundChart,
-    TableBlock,
-    ChartBlock,
-    SubscribersList,
-    Activity
-  },
-  data () {
-    return {
-      items: null,
-      sections: [
+  export default {
+    name: 'dashboard',
+    components: {
+      InfoBlock,
+      InfoRoundChart,
+      TableBlock,
+      ChartBlock,
+      SubscribersList,
+      Activity
+    },
+    data () {
+      return {
+        sections: [
         { label: 'amount', value: 16, color: '#8280FF' }
-      ]
+        ]
+      }
+    },
+    computed: {
+      ...mapGetters(['color_schema', 'user'])
     }
-  },
-  created () {
-    this.$http.get('activity/').then((res) => {
-      this.items = res.body
-    })
-  },
-  computed: {
-    ...mapGetters(['color_schema', 'user'])
   }
-}
 </script>
 
 <style scoped>
@@ -219,8 +212,8 @@ img.avatar {
   align-items: center;
 }
 .user-history-activity {
-    grid-column: 2/2;
-    grid-row: 1/3;
+  grid-column: 2/2;
+  grid-row: 1/3;
 }
 
 </style>

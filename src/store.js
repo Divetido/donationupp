@@ -54,7 +54,10 @@ export default new Vuex.Store({
       dark: dark_theme,
       light: light_theme
     },
-    subscribers: []
+    subscribers: [],
+    activities: [],
+    milestones: [],
+    widgets: [],
   },
   getters: {
     state_checkbox: state => {
@@ -79,21 +82,50 @@ export default new Vuex.Store({
     },
     addSubscribers (state, subscribers) {
       state.subscribers.push(...subscribers)
-    }
+    },
+    setActivities (state, activities) {
+      state.activities = activities
+    },
+    addActivities (state, activities) {
+      state.activities.push(...activities)
+    },
+    setMilestones (state, milestones) {
+      state.milestones = milestones
+    },
+    setWidgets (state, widgets) {
+      state.widgets = widgets
+    },
   },
   actions: {
     fetchSubscribers ({ commit }) {
       return client
-        .fetchSibscribers()
-        .then(subscribers => commit('setSubscribers', subscribers))
+      .fetchSibscribers()
+      .then(subscribers => commit('setSubscribers', subscribers))
+    },
+    fetchMilestones ({ commit }) {
+      return client
+      .fetchMilestones()
+      .then(milestones => commit('setMilestones', milestones))
+    },
+    fetchWidgets ({ commit }) {
+      return client
+      .fetchWidgets()
+      .then(widgets => commit('setWidgets', widgets))
     },
     updateSubscribers ({ commit }) {
       return client
-        .fetchSibscribers()
-        .then(subscribers => commit('addSubscribers', subscribers))
+      .fetchSibscribers()
+      .then(subscribers => commit('addSubscribers', subscribers))
     },
-    // fetchActivity ({ commit }) {
-      
-    // }
+    fetchActivities ({ commit }, type) {
+      return client
+      .fetchActivities(type)
+      .then(activities => commit('setActivities', activities))
+    },
+    updateActivities ({ commit }, type) {
+      return client
+      .fetchActivities(type)
+      .then(activities => commit('addActivities', activities))
+    },
   }
 })
