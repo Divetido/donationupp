@@ -243,13 +243,13 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-export default {
-  name: 'policy',
-  computed: {
-    ...mapGetters(['color_schema'])
-  }
-}
+	import { mapGetters } from 'vuex'
+	export default {
+		name: 'policy',
+		computed: {
+			...mapGetters(['color_schema'])
+		}
+	}
 
 </script>
 
@@ -267,7 +267,8 @@ export default {
 .group-policy {
 	display: flex;
 }
-div#policy-collapse {
-    font-size: 12px;
+div.policy-collapse {
+	font-size: 12px;
+	margin-top: 15px;
 }
 </style>

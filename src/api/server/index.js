@@ -1,6 +1,7 @@
 import Vue from 'vue'
 
 export default {
+	// INDEX
 	fetchSibscribers () {
 		return Vue.http.get('subscribers/')
 			.then(response => response.body)
@@ -15,6 +16,35 @@ export default {
 	},
 	fetchWidgets () {
 		return Vue.http.get('widgets/')
+			.then(response => response.body)
+	},
+	fetchPlaylist () {
+		return Vue.http.get('playlist/')
+			.then(response => response.body)
+	},
+	fetchSounds () {
+		return Vue.http.get('sounds/')
+			.then(response => response.body)
+	},
+	fetchSupports () {
+		return Vue.http.get('supports/')
+			.then(response => response.body)
+	},
+
+
+	//CREATE
+	createMilestone() {
+		return Vue.http.post('milestones/')
+			.then(response => response.body)
+	},
+
+	// DELETE
+	removeMilestones (id) {
+		return Vue.http.delete('milestones/')
+			.then(response => response.body)
+	},
+	removeWidgets (id) {
+		return Vue.http.delete('widgets/')
 			.then(response => response.body)
 	}
 }

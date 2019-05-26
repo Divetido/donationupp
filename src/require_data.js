@@ -21,6 +21,7 @@ import ModalBlock from '@/components/ModalBlock.vue'
 import PlayerModal from '@/components/modals/PlayerModal.vue'
 import DestroyModal from '@/components/modals/DestroyModal.vue'
 import LoadFileModal from '@/components/modals/LoadFileModal.vue'
+import AudioPlayer from '@/components/player/audio-player.vue'
 import Tooltip from 'vue-directive-tooltip'
 import 'vue-directive-tooltip/css/index.css'
 
@@ -32,6 +33,7 @@ Vue.use(VueClipboards)
 Vue.use(bFormSlider)
 
 Vue.component('load-file-modal', LoadFileModal)
+Vue.component('audio-player', AudioPlayer)
 Vue.component('player-modal', PlayerModal)
 Vue.component('destroy-modal', DestroyModal)
 Vue.component('verte', Verte)
@@ -46,3 +48,20 @@ Vue.use(VueLodash, options) // options is optional
 Vue.use(Donut)
 Vue.use(BootstrapVue)
 
+Vue.filter('numbers', (value) => {
+  let number = value + 1
+  if (number < 10) {
+    return "0" + number + "."
+  } 
+  return number + "."
+})
+
+Vue.filter('minutes', (value) => {
+  if (!value || typeof value !== "number") return "00:00"
+  let min = parseInt(value / 60),
+      sec = parseInt(value % 60)
+  min = min < 10 ? "0" + min : min
+  sec = sec < 10 ? "0" + sec : sec
+  value = min + ":" + sec
+  return value
+})

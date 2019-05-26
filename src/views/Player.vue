@@ -9,33 +9,10 @@
 				</div>
 			</div>
 
-			<div class="custom-player" :class="color_schema.item">
-				<div class="player-actions">
-					<button class="default-button player-button">
-						<div class="arrow-right"></div>
-					</button>
-					<div class="back-step">
-						<div class="arrow-left">
-						</div>
-					</div>
-					<div class="next-step">
-						<div class="arrow-right">
-						</div>
-					</div>
-				</div>
-				<div class="player-details text">
-					<div class="track-info">
-						<div class="title">Guano Apes - Scratch The Pitch</div>
-						<div class="track-time" :class="color_schema.text">3:47</div>
-					</div>
-
-					<b-progress :value="track_time" :max="100" class="progress-player"></b-progress>
-				</div>
-
-			</div>
+			<audio-player :sources="testSound" :xhrWithCredentials="true" ></audio-player>
 
 			<div class="player-list" :class="color_schema.item">
-				<div class="item-player-list" v-for="item in playerItems">
+				<div class="item-player-list" v-for="item in playlist">
 					<div class="action-img">
 
 					</div>
@@ -58,7 +35,7 @@
 			<div class="player-orders">
 				<div class="title" :class="color_schema.title_text">ЗАКАЗАННЫЕ ТРЕКИ</div>
 				<div class="order-list" >
-					<div class="order-item" :class="color_schema.item" v-for="item in playerItems">
+					<div class="order-item" :class="color_schema.item" v-for="item in sounds">
 						<div class="action-img">
 
 						</div>
@@ -112,39 +89,66 @@
 
 </template>
 <script>
-import { mapGetters } from 'vuex'
-import bFormSlider from 'vue-bootstrap-slider/es/form-slider'
-import BProgress from 'bootstrap-vue/es/components/progress/progress'
-import PlayerModal from '../components/modals/PlayerModal.vue'
+	import { mapState, mapGetters } from 'vuex'
+	import bFormSlider from 'vue-bootstrap-slider/es/form-slider'
+	import BProgress from 'bootstrap-vue/es/components/progress/progress'
+	import PlayerModal from '../components/modals/PlayerModal.vue'
+	// import AudioPlayer from '@/components/player/audio-player.vue'
 
-export default {
-  name: 'player',
-  component: {
-    bFormSlider,
-    BProgress,
-    PlayerModal
-  },
-  data () {
-    return {
-      currentTime: '00:00',
-      player_amount: 500,
-      track_time: 30,
-      playerItems: [
-        { trackName: 'Queen - Another One Bites The Dust', username: 'Marissa_10', track_time: '3:47' },
-        { trackName: 'Queen - Another One Bites The Dust', username: 'Marissa_10', track_time: '3:47' },
-        { trackName: 'Queen - Another One Bites The Dust', username: 'Marissa_10', track_time: '3:47' },
-        { trackName: 'Queen - Another One Bites The Dust', username: 'Marissa_10', track_time: '3:47' },
-        { trackName: 'Queen - Another One Bites The Dust', username: 'Marissa_10', track_time: '3:47' }
-      ]
-    }
-  },
-  computed: {
-    ...mapGetters(['color_schema'])
-  },
-  methods: {
-
-  }
-}
+	export default {
+		name: 'player',
+		component: {
+			bFormSlider,
+			BProgress,
+			PlayerModal,
+			// AudioPlayer
+		},
+		data () {
+			return {
+				currentTime: '00:00',
+				player_amount: 500,
+				track_time: 30,
+				busy: false,
+				audioSources: [
+				"http://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/theme_01.mp3",
+				"http://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Sevish_-__nbsp_.mp3"
+				],
+				
+			}
+		},
+		mounted() {
+			const listElm = document.querySelector('.player-list');
+			listElm.addEventListener('scroll', e => {
+				if(listElm.scrollTop + listElm.clientHeight >= listElm.scrollHeight) {
+					this.loadMore();
+				}
+			});
+			this.$store.dispatch('fetchPlaylist')
+			this.$store.dispatch('fetchSounds')
+		},
+		computed: {
+			...mapGetters(['color_schema']),
+			...mapState(['playlist', 'sounds', 'testSound']),
+			currentSources () {
+				return this.audioSources[this.playlistIndex]
+			}
+		},
+		methods: {
+			loadMore() {
+				this.busy = true;
+				setTimeout(() => {
+					this.$store.dispatch('updatePlaylist');
+					this.busy = false;
+				}, 200);
+			},
+			prevSound () {
+				this.playlistIndex = Math.max(0, this.playlistIndex - 1)
+			},
+			nextSound () {
+				this.playlistIndex = Math.min(playlist.length - 1, this.playlistIndex + 1)
+			}
+		},
+	}
 </script>
 
 <style>

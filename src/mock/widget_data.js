@@ -7,45 +7,45 @@ var widgets = {
       {
         title: 'Последнее сообщение',
         collapseItem: [
-        { active: true, count: 20, animation: 'Бегущая строка' },
-        { active: false, count: 20, animation: 'Бегущая строка' },
-        { active: false, count: 20, animation: 'Бегущая строка' }
+        { id: 1, active: true, count: 20, animation: 'Бегущая строка' },
+        { id: 2, active: false, count: 20, animation: 'Бегущая строка' },
+        { id: 3, active: false, count: 20, animation: 'Бегущая строка' }
         ],
         active: false
       },
       {
         title: 'Самый крупный донатер',
         collapseItem: [
-        { active: true, count: 20, animation: 'Бегущая строка' },
-        { active: false, count: 20, animation: 'Бегущая строка' },
-        { active: false, count: 20, animation: 'Бегущая строка' }
+        { id: 1, active: true, count: 20, animation: 'Бегущая строка' },
+        { id: 2, active: false, count: 20, animation: 'Бегущая строка' },
+        { id: 3, active: false, count: 20, animation: 'Бегущая строка' }
         ],
         active: false
       },
       {
         title: 'Последний донатер',
         collapseItem: [
-        { active: true, count: 20, animation: 'Бегущая строка' },
-        { active: false, count: 20, animation: 'Бегущая строка' },
-        { active: true, count: 20, animation: 'Бегущая строка' }
+        { id: 1, active: true, count: 20, animation: 'Бегущая строка' },
+        { id: 2, active: false, count: 20, animation: 'Бегущая строка' },
+        { id: 3, active: false, count: 20, animation: 'Бегущая строка' }
         ],
         active: false
       },
       {
         title: 'Последний подписчик',
         collapseItem: [
-        { active: true, count: 20, animation: 'Бегущая строка' },
-        { active: false, count: 20, animation: 'Бегущая строка' },
-        { active: false, count: 20, animation: 'Бегущая строка' }
+        { id: 1, active: true, count: 20, animation: 'Бегущая строка' },
+        { id: 2, active: false, count: 20, animation: 'Бегущая строка' },
+        { id: 3, active: false, count: 20, animation: 'Бегущая строка' }
         ],
         active: false
       },
       {
         title: 'Количество подписчиков за период',
         collapseItem: [
-        { active: true, count: 20, animation: 'Бегущая строка' },
-        { active: false, count: 20, animation: 'Бегущая строка' },
-        { active: false, count: 20, animation: 'Бегущая строка' }
+        { id: 1, active: true, count: 20, animation: 'Бегущая строка' },
+        { id: 2, active: false, count: 20, animation: 'Бегущая строка' },
+        { id: 3, active: false, count: 20, animation: 'Бегущая строка' }
         ],
         active: false
       }
@@ -75,6 +75,13 @@ var widgets = {
         sbor_border: false,
         sbor_bar_border_color: '#FFFFFF'
       }
+    }
+  },
+  remove () {
+    return {
+      method: 'DELETE',
+      url: 'widgets/',
+      response: {}
     }
   }
 }

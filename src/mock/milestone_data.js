@@ -11,7 +11,28 @@ var milestones = {
 			{ id: 5 ,money: 2000, badge_count: 25, animation_count: 25, sound_count: 25 }
 			]
 		}
+	},
+	remove() {
+		return {
+			method: 'DELETE',
+			url: 'milestones/' ,
+			response: {}
+		}
+	},
+	create() {
+		return {
+			method: 'POST',
+			url: 'milestones/',
+			response: {
+				id: 6 , 
+				money: 3000, 
+				badge_count: 1, 
+				animation_count: 1, 
+				sound_count: 1
+			}
+		}
 	}
+
 }
 
 export default milestones

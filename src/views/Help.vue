@@ -15,7 +15,7 @@
 			</div>
 		</div>
 		<div class="support-list">
-			<template v-for="(item,index) in supportItem">
+			<template v-for="(item,index) in supports">
 
 				<div class="support-item" :class="color_schema.item" v-b-toggle="'collapse-' + index " aria-expanded="false" @click="item.active = !item.active">
 					<div class="item-title">
@@ -36,54 +36,16 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
+
 export default {
   name: 'support',
-  data () {
-    return {
-      supportItem: [
-        {
-          question: 'УПРАВЛЕНИЕ АККАУНТОМ',
-          answers: [
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?',
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?',
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?'
-          ],
-          active: false
-        },
-        {
-          question: 'УПРАВЛЕНИЕ АККАУНТОМ',
-          answers: [
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?',
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?',
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?'
-          ],
-          active: false
-        },
-        {
-          question: 'УПРАВЛЕНИЕ АККАУНТОМ',
-          answers: [
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?',
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?',
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?'
-          ],
-          active: false
-        },
-        {
-          question: 'УПРАВЛЕНИЕ АККАУНТОМ',
-          answers: [
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?',
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?',
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor?'
-          ],
-          active: false
-        }
-
-      ]
-    }
-  },
   computed: {
-    ...mapGetters(['color_schema'])
+    ...mapGetters(['color_schema']),
+    ...mapState(['supports'])
+  },
+  created () {
+  	this.$store.dispatch('fetchSupports')
   }
 }
 </script>

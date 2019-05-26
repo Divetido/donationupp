@@ -94,28 +94,8 @@
       text_color () {
         return this.state_checkbox ? 'dark-blue' : 'grey'
       },
-      // itemsLimit () {
-      //   this.$http.get('activities/').then((res) => {
-      //     this.activities = res.body
-      //   })
-      //   return items.splice(0, this.perPage)
-      // },
-      // orderItems () {
-      //   return this.items = _.orderBy(this.items, 'date')
-      // }
     },
-    // created () {
-    //   this.$http.get('activity/').then((res) => {
-    //     this.items = res.body
-    //   })
-    // },
     methods: {
-      // sortedItems (field) {
-      //   this.sortKey = field
-      //   this.sortSettings[field] = !this.sortSettings[field]
-      //   this.desc = this.sortSettings[field]
-      //   return _.orderBy(this.items, this.sortKey, this.desc ? 'desc' : 'asc')
-      // }
       loadMore() {
         this.busy = true;
         setTimeout(() => {

@@ -211,4 +211,7 @@ export default {
 	widows: 45px;
 	height: 45px;
 }
+.link-galery, .link-galery-loaded {
+	cursor: pointer;
+}
 </style>

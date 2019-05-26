@@ -6,26 +6,35 @@
     <div class="destroy-modal-title text" :class="color_schema.title_text">
       Удалить {{ title }}?
     </div>
-    <b-form class="form-destroy" >
+    <div class="form-destroy" >
       <div class="group-form destroy-description" :class="color_schema.text">
         Все заполненные данные будут потеряны
       </div>
       <div class="button-action">
-        <button class="destroy-button" @click="hideModal">УДАЛИТЬ</button>
+        <button class="destroy-button" @click="removeItem()">УДАЛИТЬ</button>
         <b-button class="cancel-buttone" variant="outline-light" @click="hideModal">ОТМЕНА</b-button>
       </div>
-    </b-form>
+    </div>
   </b-modal>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'destroy-modal',
-  props: ['title'],
+  props: ['title', 'type', 'w_id', 'm_id'],
   methods: {
+    ...mapActions(['removeMilestones', 'removeWidgets']),
     hideModal () {
+      this.$refs.destroy_modal.hide()
+    },
+    removeItem() {
+      if (this.title == 'Виджет') {
+        this.removeWidgets({id: this.w_id, type: this.type})
+      } else {
+        this.removeMilestones(this.m_id)
+      }
       this.$refs.destroy_modal.hide()
     }
   },

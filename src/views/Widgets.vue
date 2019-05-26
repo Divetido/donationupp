@@ -286,55 +286,57 @@
           v-tooltip.hover.top.end="{ content: 'Редактировать', class: 'tooltip-custom' }"
           @click="editForm(1)"
           />
-          <button style="border: 0" class="delete-link btn-action" v-b-modal.destroy-modal/>
+          <button style="border: 0" class="delete-link btn-action" v-b-modal.destroy-modal @click="w_id = c_item.id; type = item.title; "/>
         </div>
       </div>
     </b-collapse>
   </template>
 </div>
-<destroy-modal title="Виджет" />
+<destroy-modal title="Виджет" :type="destroy_payload.type" :w_id="destroy_payload.w_id"/>
 </div>
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
-import SelectBlock from '@/components/SelectBlock.vue'
-import ColorPicker from '@/components/widget-component/ColorPicker.vue'
-import vue2Dropzone from 'vue2-dropzone'
-import 'vue2-dropzone/dist/vue2Dropzone.min.css'
+  import { mapGetters, mapState } from 'vuex'
+  import SelectBlock from '@/components/SelectBlock.vue'
+  import ColorPicker from '@/components/widget-component/ColorPicker.vue'
+  import vue2Dropzone from 'vue2-dropzone'
+  import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 
-export default {
-  name: 'widgets',
-  components: {
-    SelectBlock,
-    ColorPicker,
-    vueDropzone: vue2Dropzone
-  },
-  data () {
-    return {
-      dropzoneImageOptions: {
-        url: 'https://httpbin.org/post',
-        thumbnailWidth: 150,
-        maxFilesize: 0.5,
-        headers: { 'My-Awesome-Header': 'header value' },
-        addRemoveLinks: true,
-        maxFiles: 1
-      },
-      showImageDropzone: true,
-      widget_animation_options: [
+  export default {
+    name: 'widgets',
+    components: {
+      SelectBlock,
+      ColorPicker,
+      vueDropzone: vue2Dropzone
+    },
+    data () {
+      return {
+        type: null,
+        w_id: null,
+        dropzoneImageOptions: {
+          url: 'https://httpbin.org/post',
+          thumbnailWidth: 150,
+          maxFilesize: 0.5,
+          headers: { 'My-Awesome-Header': 'header value' },
+          addRemoveLinks: true,
+          maxFiles: 1
+        },
+        showImageDropzone: true,
+        widget_animation_options: [
         { value: 'Стандартно', class_name: 'static' },
         { value: 'Слайдер', class_name: 'widget-slider' },
         { value: 'Список', class_name: 'widget-list' },
         { value: 'Бегущая строка', class_name: 'crawl-line' }
-      ],
-      actions: false,
-      widget_subscribe_options: [
+        ],
+        actions: false,
+        widget_subscribe_options: [
         { value: 'Любая' },
         { value: 'Платная' },
         { value: 'Премиум' },
         { value: 'Простая' }
-      ],
-      widget_type_options: [
+        ],
+        widget_type_options: [
         { value: 'Последнее сообщение', message: 'Последнее сообщение: {{message}}' },
         { value: 'Самый крупный донатер', message: 'Самый(-е) крупный(-е) донатер(-ы): {{users}} || {{name}} {{sum}}' },
         { value: 'Последний донатер', message: 'Последний(-е) донатер(-ы): {{users}} || {{name}} {{sum}}' },
@@ -342,72 +344,78 @@ export default {
         { value: 'Количество подписчиков', message: 'Количество подписчиков: {{count}}' },
         { value: 'Количество подписчиков за период', message: 'Количество подписчиков за период: {{count}} {{type}} {{period}}' },
         { value: 'Сбор средств', message: 'Сбор средств - 1' }
-      ],
-      item_form: {
-        widget_type: { value: 'Последнее сообщение', message: 'Последнее сообщение: {{message}}' },
-        widget_list_count: 20,
-        widget_subscribe: 'Любая',
-        widget_animation: { value: 'Стандартно', class_name: 'static' },
-        widget_animation_delay: 1000,
-        widget_color: '#ffffff',
-        widget_font_size: 16,
-        widget_amount: 900,
-        widget_max_amount: 1500,
-        sbor_width: 400,
-        sbor_height: 30,
-        sbor_text_inside: '#FFFFFF',
-        sbor_text_outside: '#FFFFFF',
-        sbor_bar_color: '#525286',
-        sbor_bar_fill_color: '#6C55D9',
-        sbor_border: false,
-        sbor_bar_border_color: '#FFFFFF'
+        ],
+        item_form: {
+          widget_type: { value: 'Последнее сообщение', message: 'Последнее сообщение: {{message}}' },
+          widget_list_count: 20,
+          widget_subscribe: 'Любая',
+          widget_animation: { value: 'Стандартно', class_name: 'static' },
+          widget_animation_delay: 1000,
+          widget_color: '#ffffff',
+          widget_font_size: 16,
+          widget_amount: 900,
+          widget_max_amount: 1500,
+          sbor_width: 400,
+          sbor_height: 30,
+          sbor_text_inside: '#FFFFFF',
+          sbor_text_outside: '#FFFFFF',
+          sbor_bar_color: '#525286',
+          sbor_bar_fill_color: '#6C55D9',
+          sbor_border: false,
+          sbor_bar_border_color: '#FFFFFF'
+        }
       }
-    }
-  },
-  mounted() {
-    this.$store.dispatch('fetchWidgets')
-  },
-  computed: {
-    ...mapGetters(['color_schema']),
-    ...mapState(['widgets']),
-    replaceWidgetMessage () {
-      return this.widget_message.replace(/({{message}})/, '<p> [текст сообщения]</p>')
     },
-    colorType () {
-      return this.item.colorType
+    mounted() {
+      this.$store.dispatch('fetchWidgets')
     },
-    colorString () {
-      if (!this.colors[this.colorType]) {
-        return ''
-      }
+    computed: {
+      ...mapGetters(['color_schema']),
+      ...mapState(['widgets']),
+      replaceWidgetMessage () {
+        return this.widget_message.replace(/({{message}})/, '<p> [текст сообщения]</p>')
+      },
+      colorType () {
+        return this.item.colorType
+      },
+      colorString () {
+        if (!this.colors[this.colorType]) {
+          return ''
+        }
 
-      if (this.colorType === 'hex') {
-        return this.colors.hex
-      }
+        if (this.colorType === 'hex') {
+          return this.colors.hex
+        }
 
-      return this.colorType + '(' + Object.values(this.colors[this.colorType]).join(',') + ')'
-    },
-    sbor_percent () {
-      return (this.widget_amount * 100) / this.widget_max_amount
-    }
-  },
-  methods: {
-    showPicker (item) {
-      if (item.color) {
-        this.colors = item.color
+        return this.colorType + '(' + Object.values(this.colors[this.colorType]).join(',') + ')'
+      },
+      sbor_percent () {
+        return (this.widget_amount * 100) / this.widget_max_amount
+      },
+      destroy_payload() {
+        return {
+          type: this.type,
+          w_id: this.w_id
+        }
       }
-
-      this.displayPicker = true
     },
-    editForm (id) {
-      this.$http.get('widgets/' + id).then((res) => {
-        this.item_form = res.body
-      })
-      this.$root.$emit('bv::toggle::collapse', 'widget-construction')
-      this.actions = true
+    methods: {
+      showPicker (item) {
+        if (item.color) {
+          this.colors = item.color
+        }
+
+        this.displayPicker = true
+      },
+      editForm (id) {
+        this.$http.get('widgets/' + id).then((res) => {
+          this.item_form = res.body
+        })
+        this.$root.$emit('bv::toggle::collapse', 'widget-construction')
+        this.actions = true
+      }
     }
   }
-}
 </script>
 
 <style scoped>
@@ -432,7 +440,7 @@ div#widget-construction {
 .widgets {
   display: grid;
   grid-template-columns: 670px 1fr;
-  /*grid-template-rows: 45px auto 1fr;*/
+  grid-template-rows: 45px auto 1fr;
 }
 .widgets-list {
   grid-area: list;

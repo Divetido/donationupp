@@ -58,6 +58,12 @@ export default new Vuex.Store({
     activities: [],
     milestones: [],
     widgets: [],
+    playlist: [],
+    sounds: [],
+    testSound: [
+    "http://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Sevish_-__nbsp_.mp3",
+    "http://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/theme_01.mp3"
+    ]
   },
   getters: {
     state_checkbox: state => {
@@ -89,28 +95,89 @@ export default new Vuex.Store({
     addActivities (state, activities) {
       state.activities.push(...activities)
     },
+    createMilestone (state, milestone) {
+      state.milestones.push(milestone)
+    },
     setMilestones (state, milestones) {
       state.milestones = milestones
+    },
+    removeMilestones (state, milestone_id) {
+      var removeIndex = state.milestones.map(function(item) { return item.id; }).indexOf(milestone_id);
+      state.milestones.splice(removeIndex, 1)
     },
     setWidgets (state, widgets) {
       state.widgets = widgets
     },
+    removeWidgets (state, payload) {
+      var i_i = state.widgets.map(function(item) { return item.title; }).indexOf(payload['type']);
+      var items = state.widgets[i_i]['collapseItem']
+      var r_i = items.map(function(item) { return item.id; }).indexOf(payload['id']);
+      state.widgets[i_i]['collapseItem'].splice(r_i, 1) 
+    
+    },
+    setPlaylist (state, playlist) {
+      state.playlist = playlist
+    },
+    addPlaylist (state, playlist) {
+      state.playlist.push(...playlist)
+    },
+    setSounds (state, sounds) {
+      state.sounds = sounds
+    },
+    setSupports (state, supports) {
+      state.supports = supports
+    },
   },
   actions: {
+    fetchSupports ({ commit }) {
+      return client
+      .fetchSupports()
+      .then(supports => commit('setSupports', supports))
+    },
+    fetchSounds ({ commit }) {
+      return client
+      .fetchSounds()
+      .then(sounds => commit('setSounds', sounds))
+    },
+    fetchPlaylist ({ commit }) {
+      return client
+      .fetchPlaylist()
+      .then(playlist => commit('setPlaylist', playlist))
+    },
+    updatePlaylist ({ commit }) {
+      return client
+      .fetchPlaylist()
+      .then(playlist => commit('addPlaylist', playlist))
+    },
     fetchSubscribers ({ commit }) {
       return client
       .fetchSibscribers()
       .then(subscribers => commit('setSubscribers', subscribers))
+    },
+    createMilestone ({ commit }) {
+      return client
+      .createMilestone()
+      .then(milestone => commit('createMilestone', milestone))
     },
     fetchMilestones ({ commit }) {
       return client
       .fetchMilestones()
       .then(milestones => commit('setMilestones', milestones))
     },
+    removeMilestones ({ commit }, milestone_id) {
+      return client
+      .removeMilestones(milestone_id)
+      .then(commit('removeMilestones', milestone_id))
+    },
     fetchWidgets ({ commit }) {
       return client
       .fetchWidgets()
       .then(widgets => commit('setWidgets', widgets))
+    },
+    removeWidgets ({ commit }, payload) {
+      return client
+      .removeWidgets(payload['id'])
+      .then(commit('removeWidgets', payload))
     },
     updateSubscribers ({ commit }) {
       return client

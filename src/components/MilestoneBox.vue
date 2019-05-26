@@ -7,7 +7,7 @@
       <div class="inscription text">
         Суммарный донат
       </div>
-      <button style="border: none" class="milestone-delete"></button>
+      <button style="border: none" class="milestone-delete" v-b-modal.destroy-modal></button>
     </div>
     <div class="middle-box" :class="color_schema.item">
       <div class="milestone-badge">
