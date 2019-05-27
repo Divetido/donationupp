@@ -28,23 +28,23 @@
 
 </template>
 <script>
-import LogoBox from './components/LogoBox.vue'
-import NavBar from './components/NavBar.vue'
-import SideBar from './components/SideBar.vue'
-import VueCharts from 'vue-chartjs'
-import { mapGetters } from 'vuex'
+  import LogoBox from './components/LogoBox.vue'
+  import NavBar from './components/NavBar.vue'
+  import SideBar from './components/SideBar.vue'
+  import VueCharts from 'vue-chartjs'
+  import { mapGetters } from 'vuex'
 
-export default {
-  name: 'App',
-  components: {
-    LogoBox,
-    NavBar,
-    SideBar,
-    VueCharts
-  },
-  data () {
-    return {
-      paymentItems: [
+  export default {
+    name: 'App',
+    components: {
+      LogoBox,
+      NavBar,
+      SideBar,
+      VueCharts
+    },
+    data () {
+      return {
+        paymentItems: [
         {
           name: 'Credit card',
           icon: require('./assets/Credit card.svg'),
@@ -65,18 +65,18 @@ export default {
           icon: require('./assets/qiwi.svg'),
           number: '+79281248796'
         }
-      ]
-    }
-  },
-  computed: {
-    ...mapGetters(['color_schema']),
-    modalItems () {
-      var arr = []
-      this.paymentItems.forEach(function (el) { arr.push({ value: el.name }) })
-      return arr
+        ]
+      }
+    },
+    computed: {
+      ...mapGetters(['color_schema']),
+      modalItems () {
+        var arr = []
+        this.paymentItems.forEach(function (el) { arr.push({ value: el.name }) })
+        return arr
+      }
     }
   }
-}
 </script>
 
 <style>
@@ -485,5 +485,15 @@ img.play-btn {
   height: 20px;
   width: 20px;
   background-size: 10px 5px;
+}
+
+input[type=number] {
+  -moz-appearance:textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }
 </style>

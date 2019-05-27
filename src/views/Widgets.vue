@@ -6,7 +6,7 @@
           {{ actions ? 'НОВЫЙ ВИДЖЕТ' : 'ВИДЖЕТЫ'}}
         </div>
         <div class="action-buttons">
-          <button class="default-button text" @click="actions = !actions" v-b-toggle.widget-construction>
+          <button class="default-button text" @click="save(payload); actions = !actions" v-b-toggle.widget-construction>
            {{ actions ? 'СОХРАНИТЬ' : 'ДОБАВИТЬ'}}
          </button>
          <button v-if="actions" class="btn-cancel" @click="actions = !actions" v-b-toggle.widget-construction></button>
@@ -297,7 +297,7 @@
 </template>
 
 <script>
-  import { mapGetters, mapState } from 'vuex'
+  import { mapActions, mapGetters, mapState } from 'vuex'
   import SelectBlock from '@/components/SelectBlock.vue'
   import ColorPicker from '@/components/widget-component/ColorPicker.vue'
   import vue2Dropzone from 'vue2-dropzone'
@@ -397,6 +397,27 @@
           type: this.type,
           w_id: this.w_id
         }
+      },
+      payload() {
+        return {
+          widget_type: { value: 'Последнее сообщение', message: 'Последнее сообщение: {{message}}' },
+          widget_list_count: 20,
+          widget_subscribe: 'Любая',
+          widget_animation: { value: 'Стандартно', class_name: 'static' },
+          widget_animation_delay: 1000,
+          widget_color: '#ffffff',
+          widget_font_size: 16,
+          widget_amount: 900,
+          widget_max_amount: 1500,
+          sbor_width: 400,
+          sbor_height: 30,
+          sbor_text_inside: '#FFFFFF',
+          sbor_text_outside: '#FFFFFF',
+          sbor_bar_color: '#525286',
+          sbor_bar_fill_color: '#6C55D9',
+          sbor_border: false,
+          sbor_bar_border_color: '#FFFFFF'
+        }
       }
     },
     methods: {
@@ -413,7 +434,13 @@
         })
         this.$root.$emit('bv::toggle::collapse', 'widget-construction')
         this.actions = true
-      }
+      },
+      save(payload) {
+        if (this.actions) {
+          this.createWidgets(payload)
+        }
+      },
+      ...mapActions(['createWidgets'])
     }
   }
 </script>

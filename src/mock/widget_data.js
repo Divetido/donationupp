@@ -83,6 +83,13 @@ var widgets = {
       url: 'widgets/',
       response: {}
     }
+  },
+  create () {
+    return {
+      method: 'POST',
+      url: 'widgets/',
+      response: { id: 4, active: true, count: 20, animation: 'Бегущая строка' },
+    }
   }
 }
 

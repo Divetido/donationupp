@@ -113,7 +113,10 @@ export default new Vuex.Store({
       var items = state.widgets[i_i]['collapseItem']
       var r_i = items.map(function(item) { return item.id; }).indexOf(payload['id']);
       state.widgets[i_i]['collapseItem'].splice(r_i, 1) 
-    
+
+    },
+    createWidgets (state, widget) {
+      state.widgets[0]['collapseItem'].push(widget)
     },
     setPlaylist (state, playlist) {
       state.playlist = playlist
@@ -178,6 +181,11 @@ export default new Vuex.Store({
       return client
       .removeWidgets(payload['id'])
       .then(commit('removeWidgets', payload))
+    },
+    createWidgets ({ commit }) {
+      return client
+      .createWidgets()
+      .then(widget => commit('createWidgets', widget))
     },
     updateSubscribers ({ commit }) {
       return client

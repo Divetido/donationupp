@@ -37,6 +37,10 @@ export default {
 		return Vue.http.post('milestones/')
 			.then(response => response.body)
 	},
+	createWidgets() {
+		return Vue.http.post('widgets/')
+			.then(response => response.body)
+	},
 
 	// DELETE
 	removeMilestones (id) {

@@ -14,6 +14,7 @@ let routes = [
   WidgetData.index(),
   WidgetData.edit(),
   WidgetData.remove(),
+  WidgetData.create(),
   ActivityData.payments(),
   ActivityData.indexUser(),
   ActivityData.indexStreamer(),
