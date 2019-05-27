@@ -238,10 +238,10 @@
 </div>
 
 <div class="widgets-list">
-  <template v-for="(item,index) in widgets">
+  <template v-for="(item,index) in widgets" >
 
-    <div class="widget-item" :class="color_schema.item"   >
-      <div class="item-title" v-b-toggle="'collapse-' + index " aria-expanded="false" @click="item.active = !item.active">
+    <div class="widget-item" :class="color_schema.item" :key="item.id"  >
+      <div class="item-title" v-b-toggle="'collapse-' + index " @click="item.active = !item.active">
         {{ item.title }}
       </div>
       <div class="item-actions">

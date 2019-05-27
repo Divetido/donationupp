@@ -65,7 +65,7 @@
 				<div class="text">Cсылка на вывод медиа</div>
 				<div class="buffer-link">
 					<a href="#" :class="color_schema.title_text">https://dev.donatesupp.ru/#/stream/settings</a>
-					<button style="border: 0" class="copy-link btn-action" />
+					<button style="border: 0" class="copy-link btn-action" v-clipboard="'https://dev.donatesupp.ru/#/stream/settings'"/>
 				</div>
 			</div>
 

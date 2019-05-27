@@ -302,7 +302,7 @@
 						<button style="border: 0" class="preview-link btn-action" />
 						<button style="border: 0" class="copy-link btn-action" />
 						<button style="border: 0" class="edit-link btn-action" />
-						<button style="border: 0" class="delete-link btn-action" />
+						<button style="border: 0" class="delete-link btn-action" @click="a_id = item.id" v-b-modal.destroy-modal/>
 					</div>
 				</div>
 			</div>
@@ -312,7 +312,7 @@
 				<div class="text" :class="color_schema.title_text">
 					Оповещение о стриках подписок
 				</div>
-				<button class="default-button text" @click="actions = !actions" v-b-toggle.widget-construction>
+				<button class="default-button text" @click="actions = !actions" v-b-toggle.alerts-actions>
 					{{ actions ? 'СОХРАНИТЬ' : 'ДОБАВИТЬ'}}
 				</button>
 			</div>
@@ -345,12 +345,13 @@
 						<button style="border: 0" class="preview-link btn-action" />
 						<button style="border: 0" class="copy-link btn-action" />
 						<button style="border: 0" class="edit-link btn-action" />
-						<button style="border: 0" class="delete-link btn-action" />
+						<button style="border: 0" class="delete-link btn-action" @click="a_id = item.id" v-b-modal.destroy-modal />
 					</div>
 				</div>
 			</div>
 		</div>
 		<preview-modal/>
+		<destroy-modal title="Алерт" :a_id="a_id"/>
 	</div>
 </template>
 
@@ -409,13 +410,13 @@ export default {
       actions: false,
       alert_title: '{{user}} перевел вам {{amount}}',
       alertItems: [
-        { active: true, amount: { min: '0 EUR', max: '100 EUR' } },
-        { active: true, amount: { min: '100 EUR', max: '300 EUR' } },
-        { active: true, amount: { min: '300 EUR', max: '500 EUR' } }
+        { id: 1, active: true, amount: { min: '0 EUR', max: '100 EUR' } },
+        { id: 2, active: true, amount: { min: '100 EUR', max: '300 EUR' } },
+        { id: 3, active: true, amount: { min: '300 EUR', max: '500 EUR' } }
       ],
       subscribeItems: [
-        { active: true, strick: '1 месяц', icon: require('../assets/simple-icon.svg'), type: 'Простая подписка' },
-        { active: true, strick: '2 месяца', icon: require('../assets/premium.svg'), type: 'Премиум подписка' }
+        { id: 1, active: true, strick: '1 месяц', icon: require('../assets/simple-icon.svg'), type: 'Простая подписка' },
+        { id: 2, active: true, strick: '2 месяца', icon: require('../assets/premium.svg'), type: 'Премиум подписка' }
       ],
       showImageDropzone: true,
       showSoundDropzone: true

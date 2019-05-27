@@ -23,7 +23,7 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'destroy-modal',
-  props: ['title', 'type', 'w_id', 'm_id'],
+  props: ['title', 'type', 'w_id', 'm_id', 'a_id'],
   methods: {
     ...mapActions(['removeMilestones', 'removeWidgets']),
     hideModal () {
@@ -32,8 +32,12 @@ export default {
     removeItem() {
       if (this.title == 'Виджет') {
         this.removeWidgets({id: this.w_id, type: this.type})
-      } else {
+      } 
+      if (this.title == 'Майлстоун') {} {
         this.removeMilestones(this.m_id)
+      }
+      if (this.title == 'Алерт') {} {
+        this.removeAlert(this.a_id)
       }
       this.$refs.destroy_modal.hide()
     }
