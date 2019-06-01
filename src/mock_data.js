@@ -6,6 +6,7 @@ import ActivityData from '@/mock/activity_data'
 import MilestoneData from '@/mock/milestone_data'
 import PlaylistData from '@/mock/playlist_data'
 import SupportData from '@/mock/support_data'
+import AlertData from '@/mock/alert_data'
 
 Vue.use(VueResource)
 let message = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temp incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
@@ -25,6 +26,8 @@ let routes = [
   PlaylistData.index(),
   PlaylistData.sounds(),
   SupportData.index(),
+  AlertData.index(),
+  AlertData.subscribers(),
   {
     method: 'GET',
     url: 'comments/',

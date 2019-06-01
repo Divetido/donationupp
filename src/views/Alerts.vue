@@ -187,277 +187,315 @@
 						</div>
 					</div>
 					<div v-if="activetab === 3" class="tabcontent" :class="color_schema.item">
-						<vue-dropzone id="dropzone" @vdropzone-file-added="showImageDropzone = !showImageDropzone" :include-styling="false" :options="dropzoneImageOptions" :useCustomSlot="true">
-							<div class="dropzone-custom-content" ref="dropzoneContent" v-show="showImageDropzone">
-								<div class="dropzone-custom-title">
-									<img src="../assets/upload-cloud.svg" alt="Upload Cloud" class="upload-img">
-									<div class="text" :class="color_schema.extra">Drag & Drop file here</div>
-								</div>
-
-								<div class="subtitle">JPG, PNG, GIF, WEBM, AVI, MPEG</div>
+						<vue-dropzone 
+						id="alerts-dropzone" 
+						@vdropzone-file-added="showImageDropzone = !showImageDropzone" 
+						@vdropzone-removed-file="showImageDropzone = !showImageDropzone" 
+						:include-styling="false" 
+						:options="dropzoneImageOptions" 
+						:useCustomSlot="true"
+						v-on:vdropzone-thumbnail="thumbnail"
+						>
+						<div class="dropzone-custom-content" ref="dropzoneContent" v-show="showImageDropzone">
+							<div class="dropzone-custom-title">
+								<img src="../assets/upload-cloud.svg" alt="Upload Cloud" class="upload-img">
+								<div class="text" :class="color_schema.extra">Drag & Drop file here</div>
 							</div>
 
-							<div class="dz-details">
-								<div class="dz-size"><span data-dz-size></span></div>
-								<div class="dz-filename"><span data-dz-name></span></div>
-							</div>
-
-						</vue-dropzone>
-					</div>
-					<div v-if="activetab === 4" class="tabcontent" :class="color_schema.item">
-						<vue-dropzone id="dropzone" @vdropzone-file-added="showSoundDropzone = !showSoundDropzone" :include-styling="false" :options="dropzoneSoundOptions" :useCustomSlot="true">
-							<div class="dropzone-custom-content  sound-dropzone" ref="dropzoneContent" v-show="showSoundDropzone">
-								<div class="dropzone-custom-title">
-									<img src="../assets/upload-cloud.svg" alt="Upload Cloud" class="upload-img">
-									<div class="text" :class="color_schema.extra">Drag & Drop file here</div>
-								</div>
-							</div>
-
-							<div class="dz-details">
-								<div class="dz-size"><span data-dz-size></span></div>
-								<div class="dz-filename"><span data-dz-name></span></div>
-							</div>
-
-						</vue-dropzone>
-
-						<div class="form-alert-sound-slider">
-							<label :class="color_schema.text" for="alert-range">
-								Продолжительность
-							</label>
-							<div class="alert-sound-slider">
-								<b-form-slider  :min="0" :max="100" v-model="durationSound"/>
-								<div class="slider-value text">{{ durationSound }}</div>
-								<span>sec</span>
-							</div>
+							<div class="subtitle">JPG, PNG, GIF, WEBM, AVI, MPEG</div>
 						</div>
-
-						<div class="form-alert-sound-slider">
-							<label :class="color_schema.text" for="alert-range">
-								Громкость
-							</label>
-							<div class="alert-sound-slider">
-								<b-form-slider  :min="0" :max="100"  v-model="volumeSound"/>
-								<div class="slider-value text">{{ volumeSound }}</div>
-								<span>%</span>
-							</div>
-						</div>
-					</div>
+					</vue-dropzone>
 				</div>
-			</div>
-
-			<div class="alert-preview" :class="color_schema.item">
-				<div class="preview-action">
-					<div class="text " :class="color_schema.text">
-						Превью
-					</div>
-					<div class="modal-preview">
-						<img v-b-modal.preview-modal src="../assets/active-setting-icon.svg" class="preview-icon">
-						<div v-b-modal.preview-modal class="text">НАСТРОИТЬ ВИД</div>
-					</div>
-				</div>
-
-				<div class="custom-alert" :class="color_schema.global">
-					<div class="alert-custom-block">
-						<div class="custom-alert-image">
-							<img :src="AlertImage" alt="alert-image">
+				<div v-if="activetab === 4" class="tabcontent" :class="color_schema.item">
+					<vue-dropzone id="dropzone" @vdropzone-file-added="showSoundDropzone = !showSoundDropzone" :include-styling="false" :options="dropzoneSoundOptions" :useCustomSlot="true">
+						<div class="dropzone-custom-content  sound-dropzone" ref="dropzoneContent" v-show="showSoundDropzone">
+							<div class="dropzone-custom-title">
+								<img src="../assets/upload-cloud.svg" alt="Upload Cloud" class="upload-img">
+								<div class="text" :class="color_schema.extra">Drag & Drop file here</div>
+							</div>
 						</div>
-						<div class="custom-alert-title" :style="titleStyleoptions" v-html="alert_title">
+
+						<div class="dz-details">
+							<div class="dz-size"><span data-dz-size></span></div>
+							<div class="dz-filename"><span data-dz-name></span></div>
 						</div>
-						<div class="custom-alert-message" :style="messageStyleoptions" v-html="alert_message">
-						</div>
-					</div>
-				</div>
 
-			</div>
+					</vue-dropzone>
 
-		</b-collapse>
-
-		<div class="donat-alert">
-			<div class="donat-alert-header">
-				<div class="text" :class="color_schema.title_text">
-					Оповещение о донате
-				</div>
-				<button class="default-button text" v-show="!actions" @click="actions = !actions" v-b-toggle.alerts-actions>
-					{{ 'ДОБАВИТЬ'}}
-				</button>
-			</div>
-			<div class="donat-alert-list">
-				<div class="donat-alert-item" v-for="(item, index) in alertItems" :class="color_schema.item">
-					<div class="alert-item-checkbox" >
-						<label class="switch-checkbox" :for="'select-alert'+index">
-							<input type="checkbox" :id="'select-alert'+index" v-model="item.active" :key="'select-alert' +index">
-							<span class="alert-slider-checkbox round"></span>
+					<div class="form-alert-sound-slider">
+						<label :class="color_schema.text" for="alert-range">
+							Продолжительность
 						</label>
+						<div class="alert-sound-slider">
+							<b-form-slider  :min="0" :max="100" v-model="durationSound"/>
+							<div class="slider-value text">{{ durationSound }}</div>
+							<span>sec</span>
+						</div>
 					</div>
-					<div class="alert-amount">
-						<div class="text" :class="color_schema.text">
-							Сумма:
-						</div>
-						<div class="range-amount">
-							{{item.amount.min}} < {{item.amount.max}}
-						</div>
 
-					</div>
-					<div class="alert-item-actions">
-						<button style="border: 0" class="preview-link btn-action" />
-						<button style="border: 0" class="copy-link btn-action" />
-						<button style="border: 0" class="edit-link btn-action" />
-						<button style="border: 0" class="delete-link btn-action" @click="a_id = item.id" v-b-modal.destroy-modal/>
+					<div class="form-alert-sound-slider">
+						<label :class="color_schema.text" for="alert-range">
+							Громкость
+						</label>
+						<div class="alert-sound-slider">
+							<b-form-slider  :min="0" :max="100"  v-model="volumeSound"/>
+							<div class="slider-value text">{{ volumeSound }}</div>
+							<span>%</span>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="subscribe-alert">
-			<div class="subscribe-alert-header">
-				<div class="text" :class="color_schema.title_text">
-					Оповещение о стриках подписок
-				</div>
-				<button class="default-button text" @click="actions = !actions" v-b-toggle.alerts-actions>
-					{{ actions ? 'СОХРАНИТЬ' : 'ДОБАВИТЬ'}}
-				</button>
-			</div>
-			<div class="subscribe-alert-list">
-				<div class="subscribe-alert-item" v-for="(item, index) in subscribeItems" :class="color_schema.item">
-					<div class="subscribe-item-checkbox">
-						<label class="switch-checkbox" :for="'select-alert' + index">
-							<input type="checkbox" :id="'select-alert' + index" v-model="item.active" :key="'select-alert' + index">
-							<span class="alert-slider-checkbox round"></span>
-						</label>
-					</div>
-					<div class="subscribe-strick">
-						<div class="text" :class="color_schema.text">
-							Стрик
-						</div>
-						<span class="strick" :class="color_schema.global">
-							{{ item.strick }}
-						</span>
 
+		<div class="alert-preview" :class="color_schema.item">
+			<div class="preview-action">
+				<div class="text " :class="color_schema.text">
+					Превью
+				</div>
+				<div class="modal-preview">
+					<img v-b-modal.preview-modal src="../assets/active-setting-icon.svg" class="preview-icon">
+					<div v-b-modal.preview-modal class="text">НАСТРОИТЬ ВИД</div>
+				</div>
+			</div>
+
+			<div class="custom-alert" :class="color_schema.global">
+				<div class="alert-custom-block">
+					<div class="custom-alert-image">
+						<img :src="AlertImage" alt="alert-image">
 					</div>
-					<div class="subscribe-item-type">
-						<div class="subscribe-icon">
-							<img :src="item.icon" :alt="item.type">
-						</div>
-						<div class="text subscribe-type">
-							{{ item.type }}
-						</div>
+					<div class="custom-alert-title" :style="titleStyleoptions" v-html="alert_title">
 					</div>
-					<div class="subscribe-item-actions">
-						<button style="border: 0" class="preview-link btn-action" />
-						<button style="border: 0" class="copy-link btn-action" />
-						<button style="border: 0" class="edit-link btn-action" />
-						<button style="border: 0" class="delete-link btn-action" @click="a_id = item.id" v-b-modal.destroy-modal />
+					<div class="custom-alert-message" :style="messageStyleoptions" v-html="alert_message">
 					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</b-collapse>
+
+	<div class="donat-alert">
+		<div class="donat-alert-header">
+			<div class="text" :class="color_schema.title_text">
+				Оповещение о донате
+			</div>
+			<button class="default-button text" v-show="!actions" @click="actions = !actions" v-b-toggle.alerts-actions>
+				{{ 'ДОБАВИТЬ'}}
+			</button>
+		</div>
+		<div class="donat-alert-list">
+			<div class="donat-alert-item" v-for="(item, index) in alerts" :class="color_schema.item">
+				<div class="alert-item-checkbox" >
+					<label class="switch-checkbox" :for="'select-alert'+index">
+						<input type="checkbox" :id="'select-alert'+index" v-model="item.active" :key="'select-alert' +index">
+						<span class="alert-slider-checkbox round"></span>
+					</label>
+				</div>
+				<div class="alert-amount">
+					<div class="text" :class="color_schema.text">
+						Сумма:
+					</div>
+					<div class="range-amount">
+						{{item.amount.min}} < {{item.amount.max}}
+					</div>
+
+				</div>
+				<div class="alert-item-actions">
+					<button style="border: 0" class="preview-link btn-action" />
+					<button style="border: 0" class="copy-link btn-action" />
+					<button style="border: 0" class="edit-link btn-action" />
+					<button style="border: 0" class="delete-link btn-action" v-b-modal.destroy-modal/>
 				</div>
 			</div>
 		</div>
-		<preview-modal/>
-		<destroy-modal title="Алерт" :a_id="a_id"/>
 	</div>
+	<div class="subscribe-alert">
+		<div class="subscribe-alert-header">
+			<div class="text" :class="color_schema.title_text">
+				Оповещение о стриках подписок
+			</div>
+			<button class="default-button text" @click="actions = !actions" v-b-toggle.alerts-actions>
+				{{ actions ? 'СОХРАНИТЬ' : 'ДОБАВИТЬ'}}
+			</button>
+		</div>
+		<div class="subscribe-alert-list">
+			<div class="subscribe-alert-item" v-for="(item, index) in subscribeItems" :class="color_schema.item">
+				<div class="subscribe-item-checkbox">
+					<label class="switch-checkbox" :for="'select-alert' + index">
+						<input type="checkbox" :id="'select-alert' + index" v-model="item.active" :key="'select-alert' + index">
+						<span class="alert-slider-checkbox round"></span>
+					</label>
+				</div>
+				<div class="subscribe-strick">
+					<div class="text" :class="color_schema.text">
+						Стрик
+					</div>
+					<span class="strick" :class="color_schema.global">
+						{{ item.strick }}
+					</span>
+
+				</div>
+				<div class="subscribe-item-type">
+					<div class="subscribe-icon">
+						<img :src="item.icon" :alt="item.type">
+					</div>
+					<div class="text subscribe-type">
+						{{ item.type }}
+					</div>
+				</div>
+				<div class="subscribe-item-actions">
+					<button style="border: 0" class="preview-link btn-action" />
+					<button style="border: 0" class="copy-link btn-action" />
+					<button style="border: 0" class="edit-link btn-action" />
+					<button style="border: 0" class="delete-link btn-action" v-b-modal.destroy-modal />
+				</div>
+			</div>
+		</div>
+	</div>
+	<preview-modal/>
+	<destroy-modal title="Алерт" />
+</div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import SelectBlock from '@/components/SelectBlock.vue'
-import ColorPicker from '@/components/widget-component/ColorPicker.vue'
-import bFormSlider from 'vue-bootstrap-slider/es/form-slider'
-import PreviewModal from '@/components/modals/PreviewModal.vue'
-import vue2Dropzone from 'vue2-dropzone'
-import 'vue2-dropzone/dist/vue2Dropzone.min.css'
+	import { mapState, mapActions, mapGetters } from 'vuex'
+	import SelectBlock from '@/components/SelectBlock.vue'
+	import ColorPicker from '@/components/widget-component/ColorPicker.vue'
+	import bFormSlider from 'vue-bootstrap-slider/es/form-slider'
+	import PreviewModal from '@/components/modals/PreviewModal.vue'
+	import vue2Dropzone from 'vue2-dropzone'
+	import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 
-export default {
-  name: 'alerts',
-  components: {
-    SelectBlock,
-    ColorPicker,
-    bFormSlider,
-    PreviewModal,
-    vueDropzone: vue2Dropzone
-  },
-  data () {
-    return {
-      alert_image: '',
-      durationSound: 15,
-      volumeSound: 50,
-      dropzoneImageOptions: {
-        url: 'https://httpbin.org/post',
-        thumbnailWidth: 150,
-        maxFilesize: 0.5,
-        headers: { 'My-Awesome-Header': 'header value' },
-        addRemoveLinks: true,
-        maxFiles: 1
-      },
-      dropzoneSoundOptions: {
-        url: 'https://httpbin.org/post',
-        thumbnailWidth: 150,
-        maxFilesize: 10,
-        headers: { 'My-Awesome-Header': 'header value' },
-        addRemoveLinks: true,
-        maxFiles: 1
-      },
-      alert_message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo consequat. Duis aute reprehenderit dolor in irure in voluptate velit cillum dolore pariatur.',
-      title_align: 'center',
-      message_align: 'center',
-      title_style: { bold: true, italic: false },
-      message_style: { bold: true, italic: false },
-      alert_title_font_size: 12,
-      alert_message_font_size: 12,
-      alert_title_color: '#A1A1C3',
-      alert_message_color: '#A1A1C3',
-      alert_title_font: 'Montserrat',
-      alert_message_font: 'Montserrat',
-      range_value: [100, 500],
-      activetab: 1,
-      actions: false,
-      alert_title: '{{user}} перевел вам {{amount}}',
-      alertItems: [
-        { id: 1, active: true, amount: { min: '0 EUR', max: '100 EUR' } },
-        { id: 2, active: true, amount: { min: '100 EUR', max: '300 EUR' } },
-        { id: 3, active: true, amount: { min: '300 EUR', max: '500 EUR' } }
-      ],
-      subscribeItems: [
-        { id: 1, active: true, strick: '1 месяц', icon: require('../assets/simple-icon.svg'), type: 'Простая подписка' },
-        { id: 2, active: true, strick: '2 месяца', icon: require('../assets/premium.svg'), type: 'Премиум подписка' }
-      ],
-      showImageDropzone: true,
-      showSoundDropzone: true
-    }
-  },
-  computed: {
-    ...mapGetters(['color_schema']),
-    previewTitle () {
-      return this.alert_title.replace(/{{user}}|{{amount}}/gi, function (value) { return ("<span style='color: white' >" + value + '</span>') })
-    },
-    titleStyleoptions () {
-      return {
-        color: this.alert_title_color,
-        textAlign: this.title_align,
-        fontSize: this.alert_title_font_size + 'px',
-        fontFamily: this.alert_title_font,
-        fontStyle: this.title_style
-      }
-    },
-    messageStyleoptions () {
-      return {
-        color: this.alert_message_color,
-        textAlign: this.message_align,
-        fontSize: this.alert_message_font_size + 'px',
-        fontFamily: this.alert_message_font,
-        fontStyle: this.message_style
-      }
-    },
-    AlertImage () {
-      return this.alert_image == '' ? require('../assets/Image 23.png') : this.alert_image
-    }
-  },
-  methods: {
-    hideImageDropzone () {
-      this.showImageDropzone = false
-    },
-    hideSoundDropzone () {
-      this.showSoundDropzone = false
-    }
-  }
-}
+	export default {
+		name: 'alerts',
+		components: {
+			SelectBlock,
+			ColorPicker,
+			bFormSlider,
+			PreviewModal,
+			vueDropzone: vue2Dropzone
+		},
+		data () {
+			return {
+				alert_image: '',
+				durationSound: 15,
+				volumeSound: 50,
+				dropzoneImageOptions: {
+					url: 'https://httpbin.org/post',
+					thumbnailWidth: 150,
+					maxFilesize: 3,
+					headers: { 'My-Awesome-Header': 'header value' },
+					addRemoveLinks: true,
+					maxFiles: 1,
+					previewTemplate: this.template()
+				},
+				dropzoneSoundOptions: {
+					url: 'https://httpbin.org/post',
+					thumbnailWidth: 150,
+					maxFilesize: 10,
+					headers: { 'My-Awesome-Header': 'header value' },
+					addRemoveLinks: true,
+					maxFiles: 1
+				},
+				alert_message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod incididunt tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo consequat. Duis aute reprehenderit dolor in irure in voluptate velit cillum dolore pariatur.',
+				title_align: 'center',
+				message_align: 'center',
+				title_style: { bold: true, italic: false },
+				message_style: { bold: true, italic: false },
+				alert_title_font_size: 12,
+				alert_message_font_size: 12,
+				alert_title_color: '#A1A1C3',
+				alert_message_color: '#A1A1C3',
+				alert_title_font: 'Montserrat',
+				alert_message_font: 'Montserrat',
+				range_value: [100, 500],
+				activetab: 1,
+				actions: false,
+				alert_title: '{{user}} перевел вам {{amount}}',
+				subscribeItems: [
+				{ id: 1, active: true, strick: '1 месяц', icon: require('../assets/simple-icon.svg'), type: 'Простая подписка' },
+				{ id: 2, active: true, strick: '2 месяца', icon: require('../assets/prem-dark.svg'), type: 'Премиум подписка' }
+				],
+				showImageDropzone: true,
+				showSoundDropzone: true
+			}
+		},
+		computed: {
+			...mapState(['alerts']),
+			...mapGetters(['color_schema']),
+			previewTitle () {
+				return this.alert_title.replace(/{{user}}|{{amount}}/gi, function (value) { return ("<span style='color: white' >" + value + '</span>') })
+			},
+			titleStyleoptions () {
+				return {
+					color: this.alert_title_color,
+					textAlign: this.title_align,
+					fontSize: this.alert_title_font_size + 'px',
+					fontFamily: this.alert_title_font,
+					fontStyle: this.title_style
+				}
+			},
+			messageStyleoptions () {
+				return {
+					color: this.alert_message_color,
+					textAlign: this.message_align,
+					fontSize: this.alert_message_font_size + 'px',
+					fontFamily: this.alert_message_font,
+					fontStyle: this.message_style
+				}
+			},
+			AlertImage () {
+				return this.alert_image == '' ? require('../assets/Image 23.png') : this.alert_image
+			}
+		},
+		methods: {
+			...mapActions(['fetchAlerts', 'removeAlert']),
+			hideImageDropzone () {
+				this.showImageDropzone = false
+			},
+			hideSoundDropzone () {
+				this.showSoundDropzone = false
+			},
+			template: function () {
+				return `<div class="dz-preview dz-file-preview">
+				<div class="dz-details">
+				<div class="dz-filename"><span data-dz-name></span></div>
+				<div data-dz-remove class="remove-icon"> </div>
+				</div>
+				<div class="dz-image">
+				<div data-dz-thumbnail-bg></div>
+				</div>
+
+				<div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+				<div class="dz-error-message"><span data-dz-errormessage></span></div>
+				
+				</div>
+				`;
+			},
+			thumbnail: function(file, dataUrl) {
+				var j, len, ref, thumbnailElement;
+				if (file.previewElement) {
+					file.previewElement.classList.remove("dz-file-preview");
+					console.log('qwe',file.previewElement)
+					console.log('qwe1',file.previewElement.classList)
+					ref = file.previewElement.querySelectorAll("[data-dz-thumbnail-bg]");
+					for (j = 0, len = ref.length; j < len; j++) {
+						thumbnailElement = ref[j];
+						thumbnailElement.alt = file.name;
+						thumbnailElement.style.backgroundImage = 'url("' + dataUrl + '")';
+					}
+					return setTimeout(((function(_this) {
+						return function() {
+							return file.previewElement.classList.add("dz-image-preview");
+						};
+					})(this)), 1);
+				}
+			},
+		},
+		mounted() {
+			this.fetchAlerts()
+		}
+	}
 </script>
 
 <style>
@@ -1012,5 +1050,37 @@ img.preview-icon {
 	align-items: center;
 	justify-content: space-between;
 	margin-bottom: 20px;
+}
+
+#alerts-dropzone .dz-preview {
+	display: inline-block
+}
+#alerts-dropzone .dz-preview .dz-image {
+	width: 300px;
+	height: 300px;
+}
+#alerts-dropzone .dz-preview .dz-image > div {
+	width: inherit;
+	height: inherit;
+	background-size: contain;
+	background: no-repeat;
+}
+#alerts-dropzone .dz-preview .dz-image > img {
+	width: 100%;
+}
+
+#alerts-dropzone .dz-details {
+	display: flex;
+	width: 100%;
+	justify-content: space-evenly;
+	margin-bottom: 10px;
+}
+#alerts-dropzone .dz-success-mark, .dz-error-mark, .dz-remove {
+	display: none;
+}
+div.remove-icon {
+	background: url(../assets/remove-btn.svg);
+	width: 20px;
+	height: 20px;
 }
 </style>
